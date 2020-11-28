@@ -2,13 +2,13 @@ package model;
 
 public class Joueur {
     private String pseudo;
-    private int nbdiamantsjoueur;
+    private int nbDiamantsJoueur;
 
 
-    public Joueur (String pseudo, int nbdiamantsjoueur)
+    public Joueur (String pseudo, int nbDiamantsJoueur)
     {
         this.pseudo=pseudo;
-         this.nbdiamantsjoueur=nbdiamantsjoueur;
+         this.nbDiamantsJoueur=nbDiamantsJoueur;
     }
 
     public void setPseudo(String pseudo) {
@@ -20,14 +20,14 @@ public class Joueur {
     }
 
     public void setNbdiamantsjoueur(int nbdiamantsjoueur) {
-        this.nbdiamantsjoueur = nbdiamantsjoueur;
+        this.nbDiamantsJoueur = nbdiamantsjoueur;
     }
 
     public int getNbdiamantsjoueur(){
-        return nbdiamantsjoueur;
+        return nbDiamantsJoueur;
     }
 
     public String ToString(){
-        return "Mon pseudo est" + pseudo + "et je possède" + nbdiamantsjoueur;
+        return "Mon pseudo est" + pseudo + "et je possède" + nbDiamantsJoueur;
     }
 }
