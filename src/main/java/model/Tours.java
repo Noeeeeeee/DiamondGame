@@ -1,14 +1,21 @@
 package model;
 
+import java.util.List;
+
 public class Tours {
 
-    public int nbDiamant;
-    public int nbPiege;
+    private int nbDiamant;
+    private int nbPiege;
+    private static int nbJoueurs;
+    private List<Joueur> joueurs;
 
-    public Tours()
+    public Tours(List<Joueur> joueurs)
     {
         this.nbDiamant=0;
         this.nbPiege=0;
+        joueurs.forEach(joueur -> {
+            this.joueurs.add(joueur);
+        });
     }
 
     public void compteurDiamants(Carte C)
@@ -27,6 +34,10 @@ public class Tours {
         {
             this.nbPiege += 1;
         }
+    }
+    public static void sortieJoueur(Joueur j) throws Exception {
+        j.sortir();
+        nbJoueurs-=1;
     }
 
     public int getNbDiamant() {return nbDiamant;}
