@@ -11,6 +11,20 @@ public class GameManager {
     private int nbJoueurs;
     private int nbTours;
 
+    public GameManager(){
+
+    }
+
+    private static GameManager instance = null;
+
+    public static GameManager getInstance() {
+        if (instance == null)
+            instance = new GameManager();
+        return instance;
+    }
+
+
+
     public void creerPartie(){
         this.p=new Partie(this.nbTours,this.nbJoueurs,this.joueurs);
     }
@@ -20,6 +34,7 @@ public class GameManager {
             this.joueurs.add(joueur);
         });
     }
+
 
     public void supprimerJoueurs(Joueur j){
         this.joueurs.remove(j);
