@@ -1,12 +1,13 @@
 package manager;
 
+import javafx.collections.ObservableList;
 import model.Joueur;
 import model.Partie;
 
 import java.util.List;
 
 public class GameManager {
-    private List<Joueur> joueurs;
+    private ObservableList<Joueur> joueurs;
     private Partie p;
     private int nbJoueurs;
     private int nbTours;
