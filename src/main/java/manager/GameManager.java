@@ -27,7 +27,7 @@ public class GameManager {
 
 
     public void creerPartie(){
-        this.p=new Partie(this.nbTours,this.nbJoueurs,this.joueurs);
+        //this.p=new Partie(this.nbTours,this.nbJoueurs,this.joueurs);
     }
 
     public void ajouterJoueurs(List<Joueur> joueurs){

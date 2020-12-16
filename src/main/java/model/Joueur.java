@@ -10,24 +10,29 @@ public class Joueur {
     {
         this.pseudo=pseudo;
         this.nbDiamantsJoueur=nbDiamantsJoueur;
-        this.inside=false;
+        this.inside=true;
     }
 
-    public boolean isInside() {
+    public static boolean isInside() {
         return inside;
     }
-    public static void rentrer() throws Exception {
-        if (inside){
-            throw new Exception("Déjà dedans");
+
+    public void rentrer() throws Exception {
+        if (!inside){
+            inside=true;
         }
-        inside=true;
+        throw new Exception("Déjà dedans");
     }
+
     public static void sortir() throws Exception {
         if(inside){
             inside=false;
             return;
         }
-        throw new Exception("Déjà sortie");
+        else {
+            throw new Exception("Déjà sortie");
+        }
+
     }
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
@@ -45,7 +50,8 @@ public class Joueur {
         return nbDiamantsJoueur;
     }
 
-    public String ToString(){
-        return "Mon pseudo est" + pseudo + "et je possède" + nbDiamantsJoueur;
+    @Override
+    public String toString(){
+        return "Mon pseudo est " + pseudo + " et je possède " + nbDiamantsJoueur;
     }
 }

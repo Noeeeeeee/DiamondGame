@@ -6,17 +6,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 public class Tours {
 
     private int nbDiamant;
     private int nbPiege;
     private int nbJoueurs;
-    private ObservableList<Joueur> joueurs;
+    private List<Joueur> joueurs;
 
     public Tours(int nbJoueurs,ObservableList<Joueur> joueurs)
     {
@@ -34,7 +31,21 @@ public class Tours {
 
     public void sortirCartes()
     {
-        Carte c= new Carte();
+        Random rand=new Random();
+        int r= rand.nextInt(99);
+        Carte c;
+        if (r< 70){
+            c=new CarteDiamant();
+            compteurDiamants(c);
+        }
+        if (r>=70 && r<90){
+            c=new CartePiege();
+            compteurPiege(c);
+        }
+        if (r>=90){
+            c=new CarteTresor();
+            compteurDiamants(c);
+        }
     }
 
     public void compteurPiege(Carte C)
@@ -51,7 +62,7 @@ public class Tours {
             nbJoueurs-=1;
         }
         catch (Exception e) {
-            throw new Exception("Erreur sortie");
+            throw new Exception(e.getMessage());
         }
 
     }

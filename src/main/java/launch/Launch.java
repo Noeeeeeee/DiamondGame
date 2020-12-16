@@ -33,19 +33,23 @@ public class Launch extends Application {
 
 
     public static void main(String[] args) {
-        launch(args);
-        /*
+        //launch(args);
+
         Joueur jean=new Joueur("jean",0);
         ObservableList<Joueur> j = FXCollections.observableArrayList(jean,new Joueur("oui",0));
-        Partie p=new Partie(5, 2,j);
-        System.out.println(p.toString());
         try {
-            p.tour.sortieJoueur(jean);
+            Partie p=new Partie(5, 2,j);
+            System.out.println(p);
+            System.out.println(p.tour);
+            p.faireSortirJoueur(jean,p.getTour());
+            p.getTour().sortirCartes();
+            System.out.println(p.tour);
         }catch (Exception e){
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
-        System.out.println(p.tour.toString());
-        */
+
+
+
     }
 
     GameManager manager = new GameManager();

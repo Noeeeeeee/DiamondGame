@@ -11,7 +11,7 @@ public class Partie {
     private final int nbJoueur;
     private ObservableList<Joueur> joueurs;
 
-    public Partie(int nbTours, int nbJoueur, ObservableList<Joueur> j) {
+    public Partie(int nbTours, int nbJoueur, ObservableList<Joueur> j) throws Exception{
         this.nbTours = nbTours;
         this.tour= new Tours(nbJoueur,j);
         this.nbJoueur=nbJoueur;
