@@ -7,23 +7,23 @@ import java.util.List;
 
 public class Partie {
     private final int nbTours;
-    public static Tours tour;
+    public static Tour tour;
     private final int nbJoueur;
     private ObservableList<Joueur> joueurs;
 
     public Partie(int nbTours, int nbJoueur, ObservableList<Joueur> j) throws Exception{
         this.nbTours = nbTours;
-        this.tour= new Tours(nbJoueur,j);
+        this.tour= new Tour(nbJoueur,j);
         this.nbJoueur=nbJoueur;
         this.joueurs = FXCollections.observableArrayList();
         j.forEach(this.joueurs::add);
     }
 
     public void changerTour(){
-        this.tour = new Tours(nbJoueur,this.joueurs);
+        this.tour = new Tour(nbJoueur,this.joueurs);
     }
 
-    public void faireSortirJoueur(Joueur j,Tours t) throws Exception {
+    public static void faireSortirJoueur(Joueur j,Tour t) throws Exception {
         t.sortieJoueur(j);
     }
 
@@ -35,7 +35,7 @@ public class Partie {
         return nbJoueur;
     }
 
-    public Tours getTour() {
+    public Tour getTour() {
         return tour;
     }
 
