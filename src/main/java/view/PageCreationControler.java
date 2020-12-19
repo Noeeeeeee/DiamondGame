@@ -3,7 +3,7 @@ package view;
 import javafx.fxml.FXML;
 import manager.GameManager;
 
-public class PageCreationController {
+public class PageCreationControler {
 
     @FXML
     private void ClicBoutonCreerPartie(){

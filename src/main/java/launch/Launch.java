@@ -22,7 +22,7 @@ public class Launch extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/VuePageCreationPartie.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/VuePageJeu.fxml"));
         Scene scene = new Scene(root, 500, 500);
         scene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
         primaryStage.setScene(scene);
@@ -33,7 +33,7 @@ public class Launch extends Application {
 
 
     public static void main(String[] args) {
-        //launch(args);
+        launch(args);
 
         Joueur jean=new Joueur("jean",0);
         ObservableList<Joueur> j = FXCollections.observableArrayList(jean,new Joueur("oui",0));
@@ -49,9 +49,10 @@ public class Launch extends Application {
         }
 
 
+        GameManager manager = GameManager.getInstance();
 
     }
 
-    GameManager manager = new GameManager();
-    //manager.getInstance();
+
+
 }

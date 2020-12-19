@@ -2,7 +2,7 @@ package view;
 
 import javafx.fxml.FXML;
 
-public class PageAccueilController {
+public class PageAccueilControler {
 
     @FXML
     private void clicBouton(){

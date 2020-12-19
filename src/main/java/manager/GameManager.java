@@ -12,12 +12,17 @@ public class GameManager {
     private int nbJoueurs;
     private int nbTours;
 
-    public GameManager(){
+    private GameManager(){
 
     }
 
+
     private static GameManager instance = null;
 
+    /**
+     * Méthode qui vérifie qu'il n'y ai pas d'instance de GameManager déja créée, si non alors elle l'instancie
+     * @return GameManager déja créé
+     */
     public static GameManager getInstance() {
         if (instance == null)
             instance = new GameManager();
