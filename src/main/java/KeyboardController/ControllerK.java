@@ -16,6 +16,8 @@ public class ControllerK {
     }
 
     public void RPressed(KeyEvent e, Joueur j, Tour t) throws Exception {
-        //prochain joueur
+        if(e.getKeyCode()==KeyEvent.VK_R) {
+            //prochain joueur
+        }
     }
 }

@@ -3772,7 +3772,7 @@
 											"top": 431,
 											"width": 239,
 											"height": 13,
-											"text": "CarteView"
+											"text": "PageAccueilController"
 										},
 										{
 											"_type": "LabelView",
@@ -3949,9 +3949,9 @@
 											"font": "Arial;13;1",
 											"left": 197,
 											"top": 439,
-											"width": 150,
+											"width": 162.525390625,
 											"height": 13,
-											"text": "PartieView"
+											"text": "PartieCreationController"
 										},
 										{
 											"_type": "LabelView",
@@ -3984,7 +3984,7 @@
 									"font": "Arial;13;0",
 									"left": 192,
 									"top": 432,
-									"width": 160,
+									"width": 172.525390625,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF2JJBHjS289+g="
@@ -4011,7 +4011,7 @@
 									"font": "Arial;13;0",
 									"left": 192,
 									"top": 457,
-									"width": 160,
+									"width": 172.525390625,
 									"height": 10
 								},
 								{
@@ -4026,7 +4026,7 @@
 									"font": "Arial;13;0",
 									"left": 192,
 									"top": 467,
-									"width": 160,
+									"width": 172.525390625,
 									"height": 10
 								},
 								{
@@ -4069,7 +4069,7 @@
 							"containerChangeable": true,
 							"left": 192,
 							"top": 432,
-							"width": 160,
+							"width": 172.525390625,
 							"height": 80,
 							"nameCompartment": {
 								"$ref": "AAAAAAF2JJBHjS27vyY="
@@ -4647,6 +4647,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+											"top": 48,
 											"height": 13
 										},
 										{
@@ -4657,7 +4658,7 @@
 											},
 											"font": "Arial;13;1",
 											"left": 197,
-											"top": 799,
+											"top": 823,
 											"width": 142,
 											"height": 13,
 											"text": "KeyboardController"
@@ -4670,6 +4671,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+											"top": 48,
 											"width": 73.67724609375,
 											"height": 13,
 											"text": "(from Model)"
@@ -4682,13 +4684,14 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+											"top": 48,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 192,
-									"top": 792,
+									"top": 816,
 									"width": 152,
 									"height": 25,
 									"stereotypeLabel": {
@@ -4715,7 +4718,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 192,
-									"top": 817,
+									"top": 841,
 									"width": 152,
 									"height": 10
 								},
@@ -4730,7 +4733,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 192,
-									"top": 827,
+									"top": 851,
 									"width": 152,
 									"height": 10
 								},
@@ -4745,7 +4748,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"top": 24,
+									"top": 48,
 									"width": 10,
 									"height": 10
 								},
@@ -4760,7 +4763,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"top": 24,
+									"top": 48,
 									"width": 10,
 									"height": 10
 								}
@@ -4768,7 +4771,7 @@
 							"font": "Arial;13;0",
 							"containerChangeable": true,
 							"left": 192,
-							"top": 792,
+							"top": 816,
 							"width": 152,
 							"height": 104,
 							"nameCompartment": {
@@ -4785,6 +4788,172 @@
 							},
 							"templateParameterCompartment": {
 								"$ref": "AAAAAAF2JLF8x069wGI="
+							}
+						},
+						{
+							"_type": "UMLClassView",
+							"_id": "AAAAAAF22MJVtqGw3B4=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"model": {
+								"$ref": "AAAAAAF22MJVtaGu+EE="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAF22MJVtqGxt6s=",
+									"_parent": {
+										"$ref": "AAAAAAF22MJVtqGw3B4="
+									},
+									"model": {
+										"$ref": "AAAAAAF22MJVtaGu+EE="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF22MJVtqGy5pw=",
+											"_parent": {
+												"$ref": "AAAAAAF22MJVtqGxt6s="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"height": 13
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF22MJVtqGz71c=",
+											"_parent": {
+												"$ref": "AAAAAAF22MJVtqGxt6s="
+											},
+											"font": "Arial;13;1",
+											"left": 205,
+											"top": 551,
+											"width": 207,
+											"height": 13,
+											"text": "PageJeuController"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF22MJVtqG0mSc=",
+											"_parent": {
+												"$ref": "AAAAAAF22MJVtqGxt6s="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"width": 73.67724609375,
+											"height": 13,
+											"text": "(from Model)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF22MJVtqG11vg=",
+											"_parent": {
+												"$ref": "AAAAAAF22MJVtqGxt6s="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"height": 13,
+											"horizontalAlignment": 1
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 200,
+									"top": 544,
+									"width": 217,
+									"height": 25,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAF22MJVtqGy5pw="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAF22MJVtqGz71c="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAF22MJVtqG0mSc="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAF22MJVtqG11vg="
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "AAAAAAF22MJVtqG2ico=",
+									"_parent": {
+										"$ref": "AAAAAAF22MJVtqGw3B4="
+									},
+									"model": {
+										"$ref": "AAAAAAF22MJVtaGu+EE="
+									},
+									"font": "Arial;13;0",
+									"left": 200,
+									"top": 569,
+									"width": 217,
+									"height": 10
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "AAAAAAF22MJVtqG3Zg4=",
+									"_parent": {
+										"$ref": "AAAAAAF22MJVtqGw3B4="
+									},
+									"model": {
+										"$ref": "AAAAAAF22MJVtaGu+EE="
+									},
+									"font": "Arial;13;0",
+									"left": 200,
+									"top": 579,
+									"width": 217,
+									"height": 10
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "AAAAAAF22MJVtqG4jzM=",
+									"_parent": {
+										"$ref": "AAAAAAF22MJVtqGw3B4="
+									},
+									"model": {
+										"$ref": "AAAAAAF22MJVtaGu+EE="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"width": 10,
+									"height": 10
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "AAAAAAF22MJVtqG5W0E=",
+									"_parent": {
+										"$ref": "AAAAAAF22MJVtqGw3B4="
+									},
+									"model": {
+										"$ref": "AAAAAAF22MJVtaGu+EE="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"width": 10,
+									"height": 10
+								}
+							],
+							"font": "Arial;13;0",
+							"containerChangeable": true,
+							"left": 200,
+							"top": 544,
+							"width": 217,
+							"height": 73,
+							"nameCompartment": {
+								"$ref": "AAAAAAF22MJVtqGxt6s="
+							},
+							"attributeCompartment": {
+								"$ref": "AAAAAAF22MJVtqG2ico="
+							},
+							"operationCompartment": {
+								"$ref": "AAAAAAF22MJVtqG3Zg4="
+							},
+							"receptionCompartment": {
+								"$ref": "AAAAAAF22MJVtqG4jzM="
+							},
+							"templateParameterCompartment": {
+								"$ref": "AAAAAAF22MJVtqG5W0E="
 							}
 						}
 					]
@@ -5296,7 +5465,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF2JGX7uxlJDoY="
 							},
-							"name": "CarteView"
+							"name": "PageAccueilController"
 						},
 						{
 							"_type": "UMLClass",
@@ -5304,7 +5473,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF2JGX7uxlJDoY="
 							},
-							"name": "PartieView"
+							"name": "PartieCreationController"
 						},
 						{
 							"_type": "UMLClass",
@@ -5434,6 +5603,14 @@
 							]
 						}
 					]
+				},
+				{
+					"_type": "UMLClass",
+					"_id": "AAAAAAF22MJVtaGu+EE=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "PageJeuController"
 				}
 			]
 		}

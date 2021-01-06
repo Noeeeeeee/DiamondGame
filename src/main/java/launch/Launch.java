@@ -44,8 +44,8 @@ public class Launch extends Application {
 
         GameManager manager = GameManager.getInstance();
 
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/VuePageJeu.fxml"));
-        Scene scene = new Scene(root, 500, 500);
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/VuePageAccueil.fxml"));
+        Scene scene = new Scene(root, 700, 400);
         scene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
