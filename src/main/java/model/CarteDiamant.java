@@ -3,11 +3,10 @@ package model;
 import java.util.Random;
 
 public class CarteDiamant extends Carte{
-    public int nbDiamant;
+    public CarteDiamant(double x, double y, String image) {
+        super(x, y, image);
+    }
 
-    public void setNbDiamant(int nbDiamant) {this.nbDiamant = nbDiamant;}
-
-    public int getNbDiamant() {return nbDiamant;}
 
     public int getDiamants() {
         Random rand=new Random();

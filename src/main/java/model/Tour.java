@@ -24,7 +24,7 @@ public class Tour {
         joueurs.forEach(this.joueurs::add);
     }
 
-    public void compteurDiamants(Carte C)
+    public void compteurDiamants(CarteDiamant C)
     {
         this.nbDiamant+=C.getDiamants();
     }
@@ -33,19 +33,18 @@ public class Tour {
     {
         Random rand=new Random();
         int r= rand.nextInt(99);
-        Carte c;
         if (r< 70){
-            c=new CarteDiamant();
+            CarteDiamant c=new CarteDiamant(10,10,"");
             compteurDiamants(c);
         }
         if (r>=70 && r<90){
-            c=new CartePiege();
+            CartePiege c=new CartePiege(10, 10, "");
             compteurPiege(c);
         }
-        if (r>=90){
-            c=new CarteTresor();
+        /*if (r>=90){
+            CarteTresor c=new CarteTresor(10, 10, "");
             compteurDiamants(c);
-        }
+        }*/
     }
 
     public void compteurPiege(Carte C)
@@ -78,5 +77,8 @@ public class Tour {
     @Override
     public String toString(){
         return "Il y a " + nbDiamant + " Diamants à récupérer et " + nbPiege + " Pièges ainsi que " + nbJoueurs + " joueurs restants" ;
+    }
+
+    public void ajouterCarte(Carte carte) {
     }
 }

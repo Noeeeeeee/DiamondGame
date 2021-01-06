@@ -1,10 +1,14 @@
 package model;
 
 public class CarteTresor extends Carte{
-    public final int NBDIAMANT=15;
+    public final int nbdiamant=15;
 
-    @Override
+    public CarteTresor(double x, double y, String image) {
+        super(x, y, image);
+    }
+
+
     public int getDiamants() {
-        return this.NBDIAMANT;
+        return this.nbdiamant;
     }
 }
