@@ -8,14 +8,14 @@ import javafx.collections.ObservableList;
 
 import java.util.*;
 
-public class Tours {
+public class Tour {
 
     private int nbDiamant;
     private int nbPiege;
     private int nbJoueurs;
-    private List<Joueur> joueurs;
+    private ObservableList<Joueur> joueurs;
 
-    public Tours(int nbJoueurs,ObservableList<Joueur> joueurs)
+    public Tour(int nbJoueurs,ObservableList<Joueur> joueurs)
     {
         this.joueurs = FXCollections.observableArrayList();
         this.nbDiamant=0;

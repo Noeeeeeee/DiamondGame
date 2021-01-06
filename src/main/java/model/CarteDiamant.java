@@ -11,7 +11,7 @@ public class CarteDiamant extends Carte{
 
     public int getDiamants() {
         Random rand=new Random();
-        int r= rand.nextInt(16)+1;
+        int r= rand.nextInt(15)+1;
         return r;
     }
 }
