@@ -4,12 +4,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import manager.GameManager;
 import model.Joueur;
@@ -19,6 +22,8 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.EventObject;
 import java.util.List;
+
+import static javafx.stage.Stage.*;
 
 public class PageCreationControler {
     /**
@@ -42,6 +47,7 @@ public class PageCreationControler {
             System.out.println("Problème le pseudo est vide");
         }
         listeJoueurs.getItems().add(nouveauJoueur);
+        nouveauPseudo.clear();
     }
 
     /**
@@ -71,14 +77,27 @@ public class PageCreationControler {
 
     @FXML
     public void CreationPartieBouton(javafx.event.ActionEvent event) throws IOException {
-        //GameManager.getInstance().creerPartie();
-        //GameManager.getInstance().ajouterJoueurs(listeJoueurs); PROBLEME car il attend une list et pas une listView
-        Parent PageCreationParent = FXMLLoader.load(getClass().getResource("/fxml/VuePageJeu.fxml"));
-        Scene PageCreationScene = new Scene(PageCreationParent);
+        if(listeJoueurs.getItems().isEmpty()){
 
-        //Cette ligne retourne les informations de la scene
-        Stage fenetre = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        fenetre.setScene(PageCreationScene);
-        fenetre.show();
+            VBox dialogVbox = new VBox(5);
+            dialogVbox.setAlignment(Pos.CENTER);
+            dialogVbox.getChildren().add(new Text("Vous devez ajouter des joueurs avant de lancer la partie"));
+            Scene dialogScene = new Scene(dialogVbox, 370, 20);
+            Stage popUp=new Stage();
+            popUp.setTitle("Erreur nombre de joueurs");
+            popUp.setScene(dialogScene);
+            popUp.show();
+        }
+        else {
+            //GameManager.getInstance().creerPartie();
+            //GameManager.getInstance().ajouterJoueurs(listeJoueurs); PROBLEME car il attend une list et pas une listView
+            Parent PageCreationParent = FXMLLoader.load(getClass().getResource("/fxml/VuePageJeu.fxml"));
+            Scene PageCreationScene = new Scene(PageCreationParent);
+
+            //Cette ligne retourne les informations de la scene
+            Stage fenetre = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            fenetre.setScene(PageCreationScene);
+            fenetre.show();
+        }
     }
 }
