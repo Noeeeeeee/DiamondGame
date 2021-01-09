@@ -27,11 +27,11 @@ public class Launch extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-
+/*
         Joueur jean=new Joueur("jean",0);
         ObservableList<Joueur> j = FXCollections.observableArrayList(jean,new Joueur("oui",0));
         try {
-            Partie p=new Partie(5, 2,j);
+            Partie p=new Partie(5,j);
             Tour t=p.getTour();
             t.sortirCartes();
             System.out.println(t);
@@ -40,11 +40,11 @@ public class Launch extends Application {
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-
+*/
 
         GameManager manager = GameManager.getInstance();
 
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/VuePageAccueil.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/VuePageJeu.fxml"));
         Scene scene = new Scene(root, 700, 400);
         scene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
         primaryStage.setScene(scene);

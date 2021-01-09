@@ -2,6 +2,7 @@ package model;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import javafx.beans.property.ListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -13,16 +14,22 @@ public class Tour {
     private int nbDiamant;
     private int nbPiege;
     private int nbJoueurs;
-    private ObservableList<Joueur> joueurs;
+    private ObservableList<Joueur> joueursPresents;
 
-    public Tour(int nbJoueurs,ObservableList<Joueur> joueurs)
+
+
+
+
+    public Tour(int nbJoueurs,ObservableList<Joueur> joueursPresents)
     {
-        this.joueurs = FXCollections.observableArrayList();
+        this.joueursPresents = FXCollections.observableArrayList();
         this.nbDiamant=0;
         this.nbPiege=0;
         this.nbJoueurs=nbJoueurs;
-        joueurs.forEach(this.joueurs::add);
+        joueursPresents.forEach(this.joueursPresents::add);
     }
+
+
 
     public void compteurDiamants(CarteDiamant C)
     {
@@ -57,7 +64,7 @@ public class Tour {
     public void sortieJoueur(Joueur j) throws Exception {
         try {
             j.sortir();
-            this.joueurs.remove(j);
+            this.joueursPresents.remove(j);
             nbJoueurs-=1;
         }
         catch (Exception e) {
@@ -79,6 +86,5 @@ public class Tour {
         return "Il y a " + nbDiamant + " Diamants à récupérer et " + nbPiege + " Pièges ainsi que " + nbJoueurs + " joueurs restants" ;
     }
 
-    public void ajouterCarte(Carte carte) {
-    }
+
 }

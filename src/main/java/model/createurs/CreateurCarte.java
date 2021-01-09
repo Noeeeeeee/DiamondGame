@@ -1,14 +1,14 @@
 package model.createurs;
 
-import model.Tour;
+import model.Partie;
 
 public abstract class CreateurCarte {
 
-    public abstract void CreateurCarteDiamant(Tour t);
+    public abstract void CreateurCarteDiamant(Partie p);
 
-    public abstract void CreateurCartePiege(Tour t);
+    public abstract void CreateurCartePiege(Partie p);
 
-    public abstract void CreateurCarteTresor(Tour t);
+    public abstract void CreateurCarteTresor(Partie p);
 
 
 }

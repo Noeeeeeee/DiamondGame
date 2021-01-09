@@ -56,7 +56,7 @@
                 <ListView fx:id="listeJoueurs" opacity="0.83" prefHeight="181.0" prefWidth="133.0" style="-fx-background-color: #20120F;" />
             </children>
         </VBox>
-        <Button layoutX="250.0" layoutY="333.0" mnemonicParsing="false" opacity="0.81" prefHeight="54.0" prefWidth="200.0" style="-fx-background-color: #ffc300;" text="CREER LA PARTIE">
+        <Button onAction="#CreationPartieBouton" layoutX="250.0" layoutY="333.0" mnemonicParsing="false" opacity="0.81" prefHeight="54.0" prefWidth="200.0" style="-fx-background-color: #ffc300;" text="CREER LA PARTIE">
             <font>
                 <Font name="Italianate Regular" size="17.0" />
             </font>
