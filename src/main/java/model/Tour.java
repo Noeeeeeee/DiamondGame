@@ -61,17 +61,7 @@ public class Tour {
             this.nbPiege += 1;
         }
     }
-    public void sortieJoueur(Joueur j) throws Exception {
-        try {
-            j.sortir();
-            this.joueursPresents.remove(j);
-            nbJoueurs-=1;
-        }
-        catch (Exception e) {
-            throw new Exception(e.getMessage());
-        }
 
-    }
 
     public int getNbDiamant() {return nbDiamant;}
 

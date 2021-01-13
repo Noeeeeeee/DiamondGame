@@ -3,7 +3,7 @@ package model;
 public class Joueur {
     private String pseudo;
     private int nbDiamantsJoueur;
-    private static boolean inside;
+    private boolean inside;
 
 
     public Joueur (String pseudo, int nbDiamantsJoueur)
@@ -13,7 +13,7 @@ public class Joueur {
         this.inside=true;
     }
 
-    public static boolean isInside() {
+    public boolean isInside() {
         return inside;
     }
 
@@ -24,14 +24,13 @@ public class Joueur {
         throw new Exception("Déjà dedans");
     }
 
-    public static void sortir() throws Exception {
+    public void sortir() throws Exception {
         if(inside){
             inside=false;
             return;
         }
-        else {
-            throw new Exception("Déjà sortie");
-        }
+        throw new Exception("Déjà sortie");
+
 
     }
     public void setPseudo(String pseudo) {
