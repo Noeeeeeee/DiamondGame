@@ -6,14 +6,13 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Carte;
-import model.Joueur;
-import model.Partie;
+import model.*;
 import model.createurs.CreateurCarte;
 import model.createurs.CreateurCarteSimple;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class GameManager implements InvalidationListener {
     private ObservableList<Joueur> joueurs = FXCollections.observableArrayList();
@@ -65,8 +64,22 @@ public class GameManager implements InvalidationListener {
         return p.getLesCartes();
     }
 
+
+    public void SortirCarte()
+    {
+        ObservableList<Carte> listeCarte = p.getLesCartes();
+        listeCarte.removeAll(listeCarte);
+
+        Random rand=new Random();
+        int r = rand.nextInt(99);
+        if(r<95)
+            leCreateur.CreateurCartePiege(p);
+        if(r>=95){
+            leCreateur.CreateurCarteDiamant(p);
+        }
+    }
     @Override
     public void invalidated(Observable observable) {
-        leCreateur.CreateurCarteDiamant(p);
+        SortirCarte();
     }
 }
