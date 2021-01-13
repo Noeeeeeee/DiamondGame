@@ -53,4 +53,8 @@ public class Partie {
     public void ajouterCarte(Carte carte) {
         lesCartesObs.add(carte);
     }
+
+    public void supprimerCarte(Carte carte) {
+        lesCartesObs.remove(carte);
+    }
 }

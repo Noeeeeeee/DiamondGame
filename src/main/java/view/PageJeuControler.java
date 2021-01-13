@@ -26,7 +26,6 @@ public class PageJeuControler {
     @FXML
     private ListView<String> listeJoueurs;
 
-
     /*@FXML
     private void chargeDonnéesListView(){
         list.removeAll();
@@ -41,14 +40,7 @@ public class PageJeuControler {
     public void initialize() throws Exception {
         GameManager.getInstance().creerPartie();
 
-        for (Carte c : GameManager.getInstance().getCartes()) {
-            imageCarte.setImage(new Image(getClass().getResource(c.getImage()).toExternalForm()));
-            imageCarte.layoutXProperty().bind(c.xProperty());
-            imageCarte.layoutYProperty().bind(c.yProperty());
-
-        }
-
-/*        GameManager.getInstance().getCartes().addListener((ListChangeListener.Change<? extends Carte> change) -> {
+      GameManager.getInstance().getCartes().addListener((ListChangeListener.Change<? extends Carte> change) -> {
                     change.next();
                     for (Carte c : GameManager.getInstance().getCartes()) {
                         imageCarte.setImage(new Image(getClass().getResource(c.getImage()).toExternalForm()));
@@ -58,7 +50,7 @@ public class PageJeuControler {
                     }
 
                 }
-        );*/
+        );
 
 
         //this.chargeDonnéesListView();

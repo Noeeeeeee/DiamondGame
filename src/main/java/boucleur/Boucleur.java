@@ -28,6 +28,6 @@ public abstract class Boucleur implements Runnable, Observable {
     }
 
     protected void beep() {
-        //lesObservateurs.forEach(o ->o.invalidated(this));
+        lesObservateurs.forEach(o ->o.invalidated(this));
     }
 }

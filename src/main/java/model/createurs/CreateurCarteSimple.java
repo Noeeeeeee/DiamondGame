@@ -11,7 +11,7 @@ public class CreateurCarteSimple extends CreateurCarte {
 
     @Override
     public void CreateurCartePiege(Partie p){
-        p.ajouterCarte(new CartePiege(10, 10, "/img/cartePiege.jpg"));
+        p.ajouterCarte(new CartePiege(10, 10, "/img/cartePiege.png"));
     }
 
     @Override
