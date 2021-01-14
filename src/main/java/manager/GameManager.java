@@ -4,8 +4,10 @@ import boucleur.Boucleur;
 import boucleur.BoucleurDeJeu;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ListView;
 import model.*;
 import model.createurs.CreateurCarte;
 import model.createurs.CreateurCarteSimple;
@@ -42,17 +44,17 @@ public class GameManager implements InvalidationListener {
 
 
     public void creerPartie() throws Exception {
-        joueurs = ajouterJoueurs();
         p=new Partie(1, joueurs);
         leCreateur.CreateurCarteDiamant(p);
-        leBoucleur.addListener(this);
-        leBoucleur.setActive(true);
-        new Thread(leBoucleur).start();
+        //leBoucleur.addListener(this);
+        //leBoucleur.setActive(true);
+        //new Thread(leBoucleur).start();
     }
 
-    public ObservableList<Joueur> ajouterJoueurs(){
-       joueurs.add(new Joueur("Meriem",0 ));
-       return joueurs;
+    public void ajouterJoueurs(ListView<Joueur> listView){
+        for (Joueur j:listView.getItems()) {
+            joueurs.add(j);
+        }
     }
 
 
@@ -81,5 +83,9 @@ public class GameManager implements InvalidationListener {
     @Override
     public void invalidated(Observable observable) {
         SortirCarte();
+    }
+
+    public ObservableList<Joueur> getJoueurs(){
+        return joueurs;
     }
 }

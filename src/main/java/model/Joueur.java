@@ -51,6 +51,6 @@ public class Joueur {
 
     @Override
     public String toString(){
-        return  pseudo;
+        return  pseudo + "\nDiamants : "  + nbDiamantsJoueur;
     }
 }

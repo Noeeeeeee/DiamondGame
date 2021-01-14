@@ -17,14 +17,6 @@ import javafx.stage.Stage;
 import manager.GameManager;
 import model.Joueur;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.io.IOException;
-import java.util.EventObject;
-import java.util.List;
-
-import static javafx.stage.Stage.*;
-
 public class PageCreationControler {
     /**
      * Configure la listeView des personnes présentes dans la partie
@@ -41,11 +33,19 @@ public class PageCreationControler {
     @FXML
     private void AjoutJoueurBouton()
     {
-        Joueur nouveauJoueur = new Joueur(nouveauPseudo.getText(), 0);
         if(nouveauPseudo.getText().isEmpty())
         {
-            System.out.println("Problème le pseudo est vide");
+            VBox dialogVbox = new VBox(5);
+            dialogVbox.setAlignment(Pos.CENTER);
+            dialogVbox.getChildren().add(new Text("Problème le pseudo est vide"));
+            Scene dialogScene = new Scene(dialogVbox, 250, 20);
+            Stage popUp=new Stage();
+            popUp.setTitle("Pseudo vide");
+            popUp.setScene(dialogScene);
+            popUp.show();
+            return;
         }
+        Joueur nouveauJoueur = new Joueur(nouveauPseudo.getText(), 0);
         listeJoueurs.getItems().add(nouveauJoueur);
         nouveauPseudo.clear();
     }
@@ -76,7 +76,7 @@ public class PageCreationControler {
     }
 
     @FXML
-    public void CreationPartieBouton(javafx.event.ActionEvent event) throws IOException {
+    public void CreationPartieBouton(javafx.event.ActionEvent event) throws Exception {
         if(listeJoueurs.getItems().isEmpty()){
 
             VBox dialogVbox = new VBox(5);
@@ -89,8 +89,8 @@ public class PageCreationControler {
             popUp.show();
         }
         else {
-            //GameManager.getInstance().creerPartie();
-            //GameManager.getInstance().ajouterJoueurs(listeJoueurs); PROBLEME car il attend une list et pas une listView
+            GameManager.getInstance().creerPartie();
+            GameManager.getInstance().ajouterJoueurs(listeJoueurs);// PROBLEME car il attend une list et pas une listView
             Parent PageCreationParent = FXMLLoader.load(getClass().getResource("/fxml/VuePageJeu.fxml"));
             Scene PageCreationScene = new Scene(PageCreationParent);
 

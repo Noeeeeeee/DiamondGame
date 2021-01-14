@@ -11,11 +11,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import manager.GameManager;
 import model.Carte;
+import model.Joueur;
 
 import java.net.URI;
 
 public class PageJeuControler {
-    ObservableList list = FXCollections.observableArrayList();
+    ObservableList<Joueur> list = FXCollections.observableArrayList();
 
     @FXML
     private Pane MonPane;
@@ -24,7 +25,12 @@ public class PageJeuControler {
     private ImageView imageCarte;
 
     @FXML
-    private ListView<String> listeJoueurs;
+    private javafx.scene.control.ListView<String> listeJoueursIn=new ListView<>();
+    @FXML
+    private javafx.scene.control.ListView<String> listeJoueursOut=new ListView<>();
+
+    @FXML
+    private ListView<Joueur> joueurs;
 
     /*@FXML
     private void chargeDonnéesListView(){
@@ -37,10 +43,23 @@ public class PageJeuControler {
         listeJoueurs.getItems().addAll(list);
     }*/
 
-    public void initialize() throws Exception {
-        GameManager.getInstance().creerPartie();
+    public void joueurPosition(){
+        list=GameManager.getInstance().getJoueurs();
+        for (Joueur joueur: list ) {
+            if(joueur.isInside()){
+                listeJoueursIn.getItems().add(joueur.getPseudo());
+            }else{
+                listeJoueursOut.getItems().add(joueur.getPseudo());
+            }
+        }
+    }
 
-      GameManager.getInstance().getCartes().addListener((ListChangeListener.Change<? extends Carte> change) -> {
+    public void initialize() throws Exception {
+        joueurPosition();
+        for (Joueur j:GameManager.getInstance().getJoueurs()) {
+            joueurs.getItems().add(j);
+        }
+        GameManager.getInstance().getCartes().addListener((ListChangeListener.Change<? extends Carte> change) -> {
                     change.next();
                     for (Carte c : GameManager.getInstance().getCartes()) {
                         imageCarte.setImage(new Image(getClass().getResource(c.getImage()).toExternalForm()));
