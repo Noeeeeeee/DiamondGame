@@ -16,14 +16,15 @@ import java.util.Random;
 
 public class GameManager implements InvalidationListener {
     private ObservableList<Joueur> joueurs = FXCollections.observableArrayList();
-    private Partie p;
+    public Partie p;
     private int nbJoueurs;
     private CreateurCarte leCreateur = new CreateurCarteSimple();
     private Boucleur leBoucleur  = new BoucleurDeJeu();
+    public Carte carteCourante;
 
 
-    private GameManager(){
 
+    private GameManager() {
     }
 
 
@@ -39,12 +40,24 @@ public class GameManager implements InvalidationListener {
         return instance;
     }
 
+    public Carte getCarteCourante() {
+        return carteCourante;
+    }
+
+//    public void setCarteCourante()
+//    {
+//        Random rand=new Random();
+//        int r = rand.nextInt(99);
+//        if(r<95)
+//            this.carteCourante = leCreateur.CreateurCartePiege(p);
+//        if(r>=95)
+//            this.carteCourante = leCreateur.CreateurCarteDiamant(p);
+//    }
 
 
     public void creerPartie() throws Exception {
         joueurs = ajouterJoueurs();
         p=new Partie(1, joueurs);
-        leCreateur.CreateurCarteDiamant(p);
         leBoucleur.addListener(this);
         leBoucleur.setActive(true);
         new Thread(leBoucleur).start();
@@ -64,11 +77,9 @@ public class GameManager implements InvalidationListener {
         return p.getLesCartes();
     }
 
-
-    public void SortirCarte()
+    public void sortirCarte()
     {
-        ObservableList<Carte> listeCarte = p.getLesCartes();
-        listeCarte.removeAll(listeCarte);
+        p.getLesCartes().removeAll();
 
         Random rand=new Random();
         int r = rand.nextInt(99);
@@ -80,6 +91,8 @@ public class GameManager implements InvalidationListener {
     }
     @Override
     public void invalidated(Observable observable) {
-        SortirCarte();
+
+        sortirCarte();
     }
 }
+

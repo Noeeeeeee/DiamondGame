@@ -1,5 +1,6 @@
 package model.createurs;
 
+import model.Carte;
 import model.Partie;
 
 public abstract class CreateurCarte {

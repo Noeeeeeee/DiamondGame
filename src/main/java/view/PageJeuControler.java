@@ -21,7 +21,7 @@ public class PageJeuControler {
     private Pane MonPane;
 
     @FXML
-    private ImageView imageCarte;
+        private ImageView imageCarte;
 
     @FXML
     private ListView<String> listeJoueurs;
@@ -37,10 +37,18 @@ public class PageJeuControler {
         listeJoueurs.getItems().addAll(list);
     }*/
 
-    public void initialize() throws Exception {
+    //jE NE SAIS PLUS JAI TOUT ESSAYE CA NARRIVE PAS A ETRE NOTIFIE QUE LA LISTE A CHANGE
+    //AAAAAAAAAAAAAAAAAAAAAAAAA
+    //C PAS FAUTE DAVOIR ESSAYE
+    //GARDE TON PACKAGE CONSOLE HEIN  !  ! ! ! ! !!   ! ! ! ! ! ! ! ! ! !
+    public void initialize() throws Exception{
         GameManager.getInstance().creerPartie();
-
-      GameManager.getInstance().getCartes().addListener((ListChangeListener.Change<? extends Carte> change) -> {
+        for (Carte c : GameManager.getInstance().getCartes()) {
+            imageCarte.setImage(new Image(getClass().getResource(c.getImage()).toExternalForm()));
+            imageCarte.layoutXProperty().bind(c.xProperty());
+            imageCarte.layoutYProperty().bind(c.yProperty());
+        }
+        GameManager.getInstance().getCartes().addListener((ListChangeListener.Change<? extends Carte> change) -> {
                     change.next();
                     for (Carte c : GameManager.getInstance().getCartes()) {
                         imageCarte.setImage(new Image(getClass().getResource(c.getImage()).toExternalForm()));
@@ -57,3 +65,4 @@ public class PageJeuControler {
     }
 
 }
+

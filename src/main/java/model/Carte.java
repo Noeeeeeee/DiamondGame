@@ -2,6 +2,7 @@ package model;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.scene.image.Image;
 
 public abstract class Carte {
 
@@ -46,4 +47,22 @@ public abstract class Carte {
     public String getImage() {
         return image;
     }
+
+
+    @Override
+    public boolean equals(Object v) {
+        if (this == v)
+            return true;
+        if (v == null)
+            return false;
+        if(getClass() != v.getClass())
+            return false;
+        //comparaison
+       Carte c = (Carte)v;
+        if(!c.getImage().equals(this.getImage()))
+            return false;
+        else
+            return true;
+    }
+
 }

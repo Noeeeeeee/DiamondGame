@@ -6,7 +6,7 @@ public class CreateurCarteSimple extends CreateurCarte {
 
     @Override
     public void CreateurCarteDiamant(Partie p) {
-        p.ajouterCarte(new CarteDiamant(100, 80, "/img/carteDiamant.jpg"));
+        p.ajouterCarte(new CarteDiamant(100, 10, "/img/carteDiamant.jpg"));
     }
 
     @Override
@@ -19,3 +19,4 @@ public class CreateurCarteSimple extends CreateurCarte {
         p.ajouterCarte(new CarteTresor(10, 10, "/img/carteTresor.jpg"));
     }
 }
+
