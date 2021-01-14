@@ -27,17 +27,17 @@ public class Launch extends Application {
     public void start(Stage primaryStage) throws Exception {
 
 
-        Joueur jean=new Joueur("jean",0);
-        ObservableList<Joueur> j = FXCollections.observableArrayList(jean,new Joueur("oui",0));
-        try {
-            Partie p=new Partie(5,j);
-            p.sortirCartes();
-            System.out.println(p);
-            p.faireSortirJoueur(jean);
-            System.out.println(p);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+//        Joueur jean=new Joueur("jean",0);
+//        ObservableList<Joueur> j = FXCollections.observableArrayList(jean,new Joueur("oui",0));
+//        try {
+//            Partie p=new Partie(5,j);
+//            p.sortirCartes();
+//            System.out.println(p);
+//            p.faireSortirJoueur(jean);
+//            System.out.println(p);
+//        }catch (Exception e){
+//            System.out.println(e.getMessage());
+//        }
 
 
         GameManager manager = GameManager.getInstance();
@@ -48,5 +48,11 @@ public class Launch extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
+    }
+
+    @Override
+    public void stop() throws Exception {
+        GameManager.getInstance().stopBoucleur();
+        super.stop();
     }
 }

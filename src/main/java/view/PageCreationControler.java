@@ -76,7 +76,7 @@ public class PageCreationControler {
     }
 
     @FXML
-    public void CreationPartieBouton(javafx.event.ActionEvent event) throws IOException {
+    public void CreationPartieBouton(javafx.event.ActionEvent event) throws Exception {
         if(listeJoueurs.getItems().isEmpty()){
 
             VBox dialogVbox = new VBox(5);
@@ -89,7 +89,7 @@ public class PageCreationControler {
             popUp.show();
         }
         else {
-            //GameManager.getInstance().creerPartie();
+//            GameManager.getInstance().creerPartie();
             //GameManager.getInstance().ajouterJoueurs(listeJoueurs); PROBLEME car il attend une list et pas une listView
             Parent PageCreationParent = FXMLLoader.load(getClass().getResource("/fxml/VuePageJeu.fxml"));
             Scene PageCreationScene = new Scene(PageCreationParent);
@@ -98,6 +98,7 @@ public class PageCreationControler {
             Stage fenetre = (Stage) ((Node) event.getSource()).getScene().getWindow();
             fenetre.setScene(PageCreationScene);
             fenetre.show();
+
         }
     }
 }

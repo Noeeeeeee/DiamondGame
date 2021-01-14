@@ -4,13 +4,13 @@ public class BoucleurDeJeu extends Boucleur{
 
     @Override
     public void run() {
-        while (active)
+        while (running)
             beep();
         try {
-            Thread.sleep(20000);
+            Thread.sleep(1000);
         }
         catch (InterruptedException e) {
-            active = false;
+            running = false;
         }
     }
 }

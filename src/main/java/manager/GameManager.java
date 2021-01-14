@@ -53,11 +53,14 @@ public class GameManager implements InvalidationListener {
 //        if(r>=95)
 //            this.carteCourante = leCreateur.CreateurCarteDiamant(p);
 //    }
-
+    public void stopBoucleur() {
+        leBoucleur.setActive(false);
+    }
 
     public void creerPartie() throws Exception {
         joueurs = ajouterJoueurs();
         p=new Partie(1, joueurs);
+        leCreateur.CreateurCarteDiamant(p);
         leBoucleur.addListener(this);
         leBoucleur.setActive(true);
         new Thread(leBoucleur).start();
@@ -79,8 +82,7 @@ public class GameManager implements InvalidationListener {
 
     public void sortirCarte()
     {
-        p.getLesCartes().removeAll();
-
+        p.getLesCartes().removeAll(p.getLesCartes());
         Random rand=new Random();
         int r = rand.nextInt(99);
         if(r<95)
@@ -91,8 +93,7 @@ public class GameManager implements InvalidationListener {
     }
     @Override
     public void invalidated(Observable observable) {
-
-        sortirCarte();
+        this.sortirCarte();
     }
 }
 

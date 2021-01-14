@@ -1,5 +1,6 @@
 package boucleur;
 
+import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 
@@ -8,26 +9,28 @@ import java.util.List;
 
 public abstract class Boucleur implements Runnable, Observable {
 
-    private List<InvalidationListener> lesObservateurs = new ArrayList<>();
-    protected boolean active = false;
+    private List<InvalidationListener> mesObservateurs = new ArrayList<>();
+    protected boolean running = false;
 
-    @Override
-    public void addListener(InvalidationListener listener) {
-        lesObservateurs.add(listener);
-
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setActive(boolean running) {
+        this.running = running;
     }
 
     @Override
-    public void removeListener(InvalidationListener listener) {
-        lesObservateurs.remove(listener);
+    public void addListener(InvalidationListener invalidationListener) {
+        mesObservateurs.add(invalidationListener);
 
     }
 
+    @Override
+    public void removeListener(InvalidationListener invalidationListener) {
+        mesObservateurs.remove(invalidationListener);
+
+    }
     protected void beep() {
-        lesObservateurs.forEach(o ->o.invalidated(this));
+
+        //mesObservateurs.forEach(o -> Platform.runLater(()-> o.invalidated(this)));
+        mesObservateurs.forEach(o ->o.invalidated(this));
+
     }
 }
