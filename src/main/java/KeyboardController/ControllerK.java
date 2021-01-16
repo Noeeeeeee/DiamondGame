@@ -2,6 +2,7 @@ package KeyboardController;
 
 
 import javafx.scene.Scene;
+import javafx.stage.Stage;
 import manager.GameManager;
 import model.Joueur;
 
@@ -11,12 +12,9 @@ public class ControllerK {
 
     public void initializeInputControls(Scene scene)throws Exception {
         scene.setOnKeyPressed(e -> {
-            if (e.getCode().toString().equalsIgnoreCase("s")) {
-                try {
-                    GameManager.getInstance().faireSortirJoueur();
-                } catch (Exception exception) {
-                    exception.printStackTrace();
-                }
+            if (e.getCode().toString().equalsIgnoreCase("q")) {
+                Stage stage = (Stage) scene.getWindow();
+                stage.close();
             }
         });
     }

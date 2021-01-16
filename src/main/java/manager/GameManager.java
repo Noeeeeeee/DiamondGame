@@ -29,7 +29,7 @@ public class GameManager implements InvalidationListener {
     private int nbJoueurs;
     private CreateurCarte leCreateur = new CreateurCarteSimple();
     private Boucleur leBoucleur  = new BoucleurDeJeu();
-    private ControllerK controllerKeybord = new ControllerK();
+    private ControllerK controllerKeyboard = new ControllerK();
     public Carte carteCourante;
     private Stage stage;
 
@@ -56,21 +56,27 @@ public class GameManager implements InvalidationListener {
         this.p=new Partie(joueurs.size(),joueurs);
         leCreateur.CreateurCarteDiamant(p);
         Parent pageCreationParent = FXMLLoader.load(getClass().getResource("/fxml/VuePageJeu.fxml"));
-        Scene pageCreationScene = new Scene(pageCreationParent);
+        Scene pageCreationScene = new Scene(pageCreationParent, 790, 470);
         //stage.setScene(pageCreationScene);
         Stage fenetre = (Stage) ((Node) event.getSource()).getScene().getWindow();
         fenetre.setScene(pageCreationScene);
         fenetre.show();
-        controllerKeybord.initializeInputControls(pageCreationScene);
+        p.lancerTour();
         leBoucleur.addListener(this);
         leBoucleur.setActive(true);
         new Thread(leBoucleur).start();
+        controllerKeyboard.initializeInputControls(pageCreationScene);
+
     }
 
     public void ajouterJoueurs(ListView<Joueur> listView){
         for (Joueur j:listView.getItems()) {
             joueurs.add(j);
         }
+    }
+
+    public void prochainTour() throws Exception {
+        p.lancerTour();
     }
 
     public Carte getCarteCourante() {
@@ -81,8 +87,10 @@ public class GameManager implements InvalidationListener {
         creerPartie(event);
     }
 
-    public void faireSortirJoueur() throws Exception {
-        p.getT().faireSortirJoueur();
+    public void faireSortirJoueur(Joueur j) throws Exception {
+        if (j!=null){
+            p.getT().faireSortirJoueur(j);
+        }
     }
 
 
@@ -92,16 +100,6 @@ public class GameManager implements InvalidationListener {
 
     public ObservableList<Carte> getCartes(){
         return p.getLesCartes();
-    }
-
-    public void lancerTour() throws Exception {
-        Thread.sleep(3000);
-        p.lancerTour();
-        System.out.println(getP().getT().getJcourant());
-    }
-
-    public void changerJoueurCourant(){
-        p.getT().changerJoueurCourant();
     }
 
     public void SortirCarte()

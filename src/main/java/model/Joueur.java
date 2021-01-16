@@ -9,6 +9,7 @@ public class Joueur {
     private String pseudo;
     private int nbDiamantsJoueur;
     private boolean inside;
+    private boolean aJoue;
 
 
     public Joueur (String pseudo, int nbDiamantsJoueur)
@@ -35,8 +36,6 @@ public class Joueur {
             return;
         }
         throw new Exception("Déjà sortie");
-
-
     }
 
     public void setPseudo(String pseudo) {
