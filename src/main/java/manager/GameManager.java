@@ -1,5 +1,6 @@
 package manager;
 
+import KeyboardController.ControllerK;
 import boucleur.Boucleur;
 import boucleur.BoucleurDeJeu;
 import javafx.beans.InvalidationListener;
@@ -7,10 +8,16 @@ import javafx.beans.Observable;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
 import model.*;
 import model.createurs.CreateurCarte;
 import model.createurs.CreateurCarteSimple;
+import javafx.event.ActionEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +29,9 @@ public class GameManager implements InvalidationListener {
     private int nbJoueurs;
     private CreateurCarte leCreateur = new CreateurCarteSimple();
     private Boucleur leBoucleur  = new BoucleurDeJeu();
-
+    private ControllerK controllerKeybord = new ControllerK();
+    public Carte carteCourante;
+    private Stage stage;
 
     private GameManager(){
 
@@ -43,18 +52,37 @@ public class GameManager implements InvalidationListener {
 
 
 
-    public void creerPartie() throws Exception {
-        p=new Partie(1, joueurs);
+    public void creerPartie(javafx.event.ActionEvent event) throws Exception {
+        this.p=new Partie(joueurs.size(),joueurs);
         leCreateur.CreateurCarteDiamant(p);
-        //leBoucleur.addListener(this);
-        //leBoucleur.setActive(true);
-        //new Thread(leBoucleur).start();
+        Parent pageCreationParent = FXMLLoader.load(getClass().getResource("/fxml/VuePageJeu.fxml"));
+        Scene pageCreationScene = new Scene(pageCreationParent);
+        //stage.setScene(pageCreationScene);
+        Stage fenetre = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        fenetre.setScene(pageCreationScene);
+        fenetre.show();
+        controllerKeybord.initializeInputControls(pageCreationScene);
+        leBoucleur.addListener(this);
+        leBoucleur.setActive(true);
+        new Thread(leBoucleur).start();
     }
 
     public void ajouterJoueurs(ListView<Joueur> listView){
         for (Joueur j:listView.getItems()) {
             joueurs.add(j);
         }
+    }
+
+    public Carte getCarteCourante() {
+        return carteCourante;
+    }
+
+    public void lancerJeu(javafx.event.ActionEvent event) throws Exception {
+        creerPartie(event);
+    }
+
+    public void faireSortirJoueur() throws Exception {
+        p.getT().faireSortirJoueur();
     }
 
 
@@ -66,6 +94,15 @@ public class GameManager implements InvalidationListener {
         return p.getLesCartes();
     }
 
+    public void lancerTour() throws Exception {
+        Thread.sleep(3000);
+        p.lancerTour();
+        System.out.println(getP().getT().getJcourant());
+    }
+
+    public void changerJoueurCourant(){
+        p.getT().changerJoueurCourant();
+    }
 
     public void SortirCarte()
     {
@@ -88,4 +125,38 @@ public class GameManager implements InvalidationListener {
     public ObservableList<Joueur> getJoueurs(){
         return joueurs;
     }
+
+    public Partie getP(){
+        return p;
+    }
+
+    public void stopBoucleur() {
+        leBoucleur.setActive(false);
+    }
+
+    public ObservableList<Joueur> ajouterJoueurs(){
+        joueurs.add(new Joueur("Meriem",0 ));
+        return joueurs;
+    }
+
+    public void sortirCarte()
+    {
+        p.getLesCartes().removeAll(p.getLesCartes());
+        Random rand=new Random();
+        int r = rand.nextInt(99);
+        if(r<95)
+            leCreateur.CreateurCartePiege(p);
+        if(r>=95){
+            leCreateur.CreateurCarteDiamant(p);
+        }
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
 }

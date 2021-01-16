@@ -1,26 +1,23 @@
 package KeyboardController;
 
-import model.Joueur;
-import model.Partie;
-import model.Tour;
 
-import java.awt.event.KeyEvent;
+import javafx.scene.Scene;
+import manager.GameManager;
+import model.Joueur;
+
+import java.util.jar.JarEntry;
 
 public class ControllerK {
 
-    public void SPressed(KeyEvent e, Joueur j,Partie p)throws Exception {
-        try {
-            if (e.getKeyCode() == KeyEvent.VK_S) {
-                p.faireSortirJoueur(j);
+    public void initializeInputControls(Scene scene)throws Exception {
+        scene.setOnKeyPressed(e -> {
+            if (e.getCode().toString().equalsIgnoreCase("s")) {
+                try {
+                    GameManager.getInstance().faireSortirJoueur();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
             }
-        }catch(Exception e1) {
-                throw e1;
-            }
-    }
-
-    public void RPressed(KeyEvent e, Joueur j) throws Exception {
-        if(e.getKeyCode()==KeyEvent.VK_R ) {
-            //prochain joueur
-        }
+        });
     }
 }

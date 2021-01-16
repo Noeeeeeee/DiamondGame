@@ -1,5 +1,10 @@
 package model;
 
+import javafx.event.EventType;
+import KeyboardController.ControllerK;
+
+import java.awt.event.KeyEvent;
+
 public class Joueur {
     private String pseudo;
     private int nbDiamantsJoueur;
@@ -33,6 +38,7 @@ public class Joueur {
 
 
     }
+
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
     }
@@ -42,7 +48,7 @@ public class Joueur {
     }
 
     public void setNbdiamantsjoueur(int nbdiamantsjoueur) {
-        this.nbDiamantsJoueur = nbdiamantsjoueur;
+        this.nbDiamantsJoueur+=nbdiamantsjoueur;
     }
 
     public int getNbdiamantsjoueur(){
