@@ -39,6 +39,13 @@ public class Launch extends Application {
         primaryStage.show();
 
     }
+
+    @Override
+    public void stop() throws Exception {
+        GameManager.getInstance().stopBoucleur();
+        super.stop();
+    }
+
 }
 
 

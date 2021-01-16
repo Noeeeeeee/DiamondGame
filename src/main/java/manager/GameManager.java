@@ -111,10 +111,12 @@ public class GameManager implements InvalidationListener {
 
         Random rand=new Random();
         int r = rand.nextInt(99);
-        if(r<95)
+        if(r<50)
             leCreateur.CreateurCartePiege(p);
-        if(r>=95){
+        if(r>=50){
             leCreateur.CreateurCarteDiamant(p);
+            for (Carte c : p.getLesCartes())
+                p.compteurDiamant((CarteDiamant)c);
         }
     }
     @Override
@@ -146,6 +148,7 @@ public class GameManager implements InvalidationListener {
         int r = rand.nextInt(99);
         if(r<95)
             leCreateur.CreateurCartePiege(p);
+
         if(r>=95){
             leCreateur.CreateurCarteDiamant(p);
         }

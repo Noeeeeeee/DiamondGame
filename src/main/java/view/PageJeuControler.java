@@ -1,16 +1,19 @@
 package view;
 
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.util.converter.NumberStringConverter;
 import manager.GameManager;
 import model.Carte;
 import model.Joueur;
@@ -34,6 +37,9 @@ public class PageJeuControler {
 
     @FXML
     private ListView<Joueur> joueurs;
+
+    @FXML
+    private Label nombreTotal;
 
     /*@FXML
     private void chargeDonnéesListView(){
@@ -68,7 +74,7 @@ public class PageJeuControler {
         for (Carte c : GameManager.getInstance().getCartes()) {
             updateCarte(c);
         }
-
+        Bindings.bindBidirectional(nombreTotal.textProperty(),GameManager.getInstance().getP().getNombreTotalDeDiamant(),new NumberStringConverter());
 
         GameManager.getInstance().getCartes().addListener((ListChangeListener.Change<? extends Carte> change) -> {
                     change.next();

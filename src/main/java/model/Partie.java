@@ -18,6 +18,7 @@ public class Partie {
     private ObservableList<Joueur> lesJoueurs = FXCollections.observableArrayList();;
     private ObservableList<Carte> lesCartesObs = FXCollections.observableArrayList();
     private ListProperty<Carte> lesCartesProp = new SimpleListProperty<>(lesCartesObs);
+    private int nombreTotalDeDiamant;
 
     public Partie(int nbJoueur, ObservableList<Joueur> j) throws Exception{
         this.nbJoueur=nbJoueur;
@@ -61,5 +62,12 @@ public class Partie {
 
     public void setT(Tour t) {
         this.t = t;
+    }
+
+    public int getNombreTotalDeDiamant() { return nombreTotalDeDiamant; }
+
+    public void compteurDiamant(CarteDiamant c)
+    {
+        this.nombreTotalDeDiamant+=c.getDiamants();
     }
 }
