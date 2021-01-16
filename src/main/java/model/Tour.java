@@ -14,11 +14,11 @@ public class Tour {
     private int nbDiamant;
     private int nbPiege;
     private int nbJoueurs;
+    private int numTour;
     private Joueur j;
     private ObservableList<Joueur> joueursPresents;
     private ObservableList<Joueur> joueurs;
     private ObservableList<Joueur> joueursSortie;
-    private Joueur joueurCourant;
 
 
     public Tour(int nbJoueurs,ObservableList<Joueur> joueursPresents) throws Exception {
@@ -28,38 +28,30 @@ public class Tour {
         this.nbDiamant=0;
         this.nbPiege=0;
         this.nbJoueurs=nbJoueurs;
+        numTour=0;
         joueursPresents.forEach(this.joueursPresents::add);
         joueursPresents.forEach(this.joueurs::add);
-        joueurCourant=joueursPresents.get(0);
     }
 
-    public void changerJoueurCourant() {
-        if (joueursPresents.isEmpty()){
-            System.out.println("tour fini");
+    public void faireSortirJoueur(Joueur joueur) throws Exception {
+        System.out.println(joueursPresents);
+        if(joueur.isInside()){
+            joueur.sortir();
+            joueursSortie.add(joueur);
+            joueursPresents.remove(joueur);
+            this.j=joueur;
         }
-        joueurCourant=joueursPresents.iterator().next();
-        for (Joueur joueur: joueursSortie) {
+    }
+
+    public void numTourAdd(){
+        for(Joueur joueur:joueursSortie){
             joueur.setNbdiamantsjoueur(nbDiamant/joueursSortie.size());
         }
-        if (joueursSortie.size()>0) {
-            this.nbDiamant = 0;
+        if(joueursSortie.size()>0){
+            this.nbDiamant=0;
         }
-        if (joueursSortie.contains(this.j)) {
-            joueursSortie.remove(this.j);
-        }
-        System.out.println("Tout le monde est sortie");
+        joueursSortie.removeAll();
     }
-
-    public void faireSortirJoueur() throws Exception {
-        System.out.println(joueursPresents);
-        if(joueurCourant.isInside()){
-            joueurCourant.sortir();
-            joueursSortie.add(joueurCourant);
-            joueursPresents.remove(joueurCourant);
-            this.j=joueurCourant;
-        }
-    }
-
 
     public void compteurDiamants(CarteDiamant C)
     {
@@ -91,11 +83,6 @@ public class Tour {
             this.nbPiege += 1;
         }
     }
-
-    public Joueur getJcourant(){
-        return joueurCourant;
-    }
-
 
     public int getNbDiamant() {return nbDiamant;}
 

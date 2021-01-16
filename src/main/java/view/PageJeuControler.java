@@ -28,9 +28,9 @@ public class PageJeuControler {
     private ImageView imageCarte;
 
     @FXML
-    private javafx.scene.control.ListView<String> listeJoueursIn=new ListView<>();
+    private ListView<String> listeJoueursIn;
     @FXML
-    private javafx.scene.control.ListView<String> listeJoueursOut=new ListView<>();
+    private ListView<String> listeJoueursOut;
 
     @FXML
     private ListView<Joueur> joueurs;
@@ -46,20 +46,23 @@ public class PageJeuControler {
         listeJoueurs.getItems().addAll(list);
     }*/
 
+
+    /**
+     * change la position du joueur suivant si il est ou non dans la pyramide
+     */
     public void joueurPosition(){
         list=GameManager.getInstance().getJoueurs();
         for (Joueur joueur: list ) {
             if(joueur.isInside()){
-                if (listeJoueursIn.getItems().contains(joueur)) {
-                    return;
+                if (!listeJoueursIn.getItems().contains(joueur.getPseudo())){
+                    listeJoueursIn.getItems().add(joueur.getPseudo());
+                    listeJoueursOut.getItems().remove(joueur.getPseudo());
                 }
-                listeJoueursIn.getItems().add(joueur.getPseudo());
             }else{
-                if (listeJoueursOut.getItems().contains(joueur)) {
-                    return;
+                if (!listeJoueursOut.getItems().contains(joueur.getPseudo())){
+                    listeJoueursOut.getItems().add(joueur.getPseudo());
+                    listeJoueursIn.getItems().remove(joueur.getPseudo());
                 }
-                listeJoueursOut.getItems().add(joueur.getPseudo());
-                listeJoueursIn.getItems().remove(joueur.getPseudo());
             }
         }
     }
@@ -95,22 +98,20 @@ public class PageJeuControler {
         joueurPosition();
     }
 
-    @FXML
-    public void LancerButtonAction(ActionEvent actionEvent) throws Exception {
-        GameManager.getInstance().lancerTour();
-        joueurPosition();
-    }
-
-    public void joueurSuivant(ActionEvent actionEvent) {
-        GameManager.getInstance().changerJoueurCourant();
-    }
-
     public void updateCarte(Carte c)
     {
         imageCarte.setUserData(imageCarte);
         imageCarte.setImage(new Image(getClass().getResource(c.getImage()).toExternalForm()));
         imageCarte.layoutXProperty().bind(c.xProperty());
         imageCarte.layoutYProperty().bind(c.yProperty());
+    }
+
+    public void buttonSortir(ActionEvent actionEvent) throws Exception {
+        Joueur j=joueurs.getSelectionModel().getSelectedItem();
+        if(j!=null){
+            GameManager.getInstance().faireSortirJoueur(j);
+        }
+        joueurPosition();
     }
 
   

@@ -45,6 +45,19 @@ public class PageCreationControler {
             popUp.show();
             return;
         }
+        for (Joueur j:listeJoueurs.getItems()) {
+            if (nouveauPseudo.getText().equals(j.getPseudo())){
+                VBox dialogVbox = new VBox(5);
+                dialogVbox.setAlignment(Pos.CENTER);
+                dialogVbox.getChildren().add(new Text("pseudo déjà existant"));
+                Scene dialogScene = new Scene(dialogVbox, 250, 20);
+                Stage popUp=new Stage();
+                popUp.setTitle("Déjà pris");
+                popUp.setScene(dialogScene);
+                popUp.show();
+                return;
+            }
+        }
         Joueur nouveauJoueur = new Joueur(nouveauPseudo.getText(), 0);
         listeJoueurs.getItems().add(nouveauJoueur);
         nouveauPseudo.clear();
