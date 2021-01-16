@@ -14,21 +14,51 @@ public class Tour {
     private int nbDiamant;
     private int nbPiege;
     private int nbJoueurs;
+    private Joueur j;
     private ObservableList<Joueur> joueursPresents;
+    private ObservableList<Joueur> joueurs;
+    private ObservableList<Joueur> joueursSortie;
+    private Joueur joueurCourant;
 
 
-
-
-
-    public Tour(int nbJoueurs,ObservableList<Joueur> joueursPresents)
-    {
+    public Tour(int nbJoueurs,ObservableList<Joueur> joueursPresents) throws Exception {
         this.joueursPresents = FXCollections.observableArrayList();
+        this.joueurs=FXCollections.observableArrayList();
+        this.joueursSortie= FXCollections.observableArrayList();
         this.nbDiamant=0;
         this.nbPiege=0;
         this.nbJoueurs=nbJoueurs;
         joueursPresents.forEach(this.joueursPresents::add);
+        joueursPresents.forEach(this.joueurs::add);
+        joueurCourant=joueursPresents.get(0);
     }
 
+    public void changerJoueurCourant() {
+        if (joueursPresents.isEmpty()){
+            System.out.println("tour fini");
+        }
+        joueurCourant=joueursPresents.iterator().next();
+        for (Joueur joueur: joueursSortie) {
+            joueur.setNbdiamantsjoueur(nbDiamant/joueursSortie.size());
+        }
+        if (joueursSortie.size()>0) {
+            this.nbDiamant = 0;
+        }
+        if (joueursSortie.contains(this.j)) {
+            joueursSortie.remove(this.j);
+        }
+        System.out.println("Tout le monde est sortie");
+    }
+
+    public void faireSortirJoueur() throws Exception {
+        System.out.println(joueursPresents);
+        if(joueurCourant.isInside()){
+            joueurCourant.sortir();
+            joueursSortie.add(joueurCourant);
+            joueursPresents.remove(joueurCourant);
+            this.j=joueurCourant;
+        }
+    }
 
 
     public void compteurDiamants(CarteDiamant C)
@@ -60,6 +90,10 @@ public class Tour {
         {
             this.nbPiege += 1;
         }
+    }
+
+    public Joueur getJcourant(){
+        return joueurCourant;
     }
 
 
