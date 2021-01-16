@@ -89,15 +89,9 @@ public class PageCreationControler {
             popUp.show();
         }
         else {
-//            GameManager.getInstance().creerPartie();
+             GameManager.getInstance().creerPartie();
             //GameManager.getInstance().ajouterJoueurs(listeJoueurs); PROBLEME car il attend une list et pas une listView
-            Parent PageCreationParent = FXMLLoader.load(getClass().getResource("/fxml/VuePageJeu.fxml"));
-            Scene PageCreationScene = new Scene(PageCreationParent);
 
-            //Cette ligne retourne les informations de la scene
-            Stage fenetre = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            fenetre.setScene(PageCreationScene);
-            fenetre.show();
 
         }
     }

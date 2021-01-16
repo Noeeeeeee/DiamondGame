@@ -6,6 +6,11 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import model.*;
 import model.createurs.CreateurCarte;
 import model.createurs.CreateurCarteSimple;
@@ -21,6 +26,7 @@ public class GameManager implements InvalidationListener {
     private CreateurCarte leCreateur = new CreateurCarteSimple();
     private Boucleur leBoucleur  = new BoucleurDeJeu();
     public Carte carteCourante;
+    private Stage stage;
 
 
 
@@ -61,6 +67,10 @@ public class GameManager implements InvalidationListener {
         joueurs = ajouterJoueurs();
         p=new Partie(1, joueurs);
         leCreateur.CreateurCarteDiamant(p);
+        Parent pageCreationParent = FXMLLoader.load(getClass().getResource("/fxml/VuePageJeu.fxml"));
+        Scene pageCreationScene = new Scene(pageCreationParent);
+        stage.setScene(pageCreationScene);
+
         leBoucleur.addListener(this);
         leBoucleur.setActive(true);
         new Thread(leBoucleur).start();
@@ -94,6 +104,14 @@ public class GameManager implements InvalidationListener {
     @Override
     public void invalidated(Observable observable) {
         this.sortirCarte();
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 }
 

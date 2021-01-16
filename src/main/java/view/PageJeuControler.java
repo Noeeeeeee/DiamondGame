@@ -40,47 +40,43 @@ public class PageJeuControler {
         listeJoueurs.getItems().addAll(list);
     }*/
 
-    //jE NE SAIS PLUS JAI TOUT ESSAYE CA NARRIVE PAS A ETRE NOTIFIE QUE LA LISTE A CHANGE
-    //AAAAAAAAAAAAAAAAAAAAAAAAA
-    //C PAS FAUTE DAVOIR ESSAYE
-    //GARDE TON PACKAGE CONSOLE HEIN  !  ! ! ! ! !!   ! ! ! ! ! ! ! ! ! !
+
     public void initialize() throws Exception {
-        GameManager.getInstance().creerPartie();
         for (Carte c : GameManager.getInstance().getCartes()) {
-            imageCarte.setImage(new Image(getClass().getResource(c.getImage()).toExternalForm()));
-            imageCarte.layoutXProperty().bind(c.xProperty());
-            imageCarte.layoutYProperty().bind(c.yProperty());
+            updateCarte(c);
         }
+
+
+        GameManager.getInstance().getCartes().addListener((ListChangeListener.Change<? extends Carte> change) -> {
+                    change.next();
+                    for (Carte c : change.getAddedSubList())
+                        updateCarte(c);
+
+
+                    for (Carte c : change.getRemoved()) {
+                        Iterator<Node> iterator = MonPane.getChildren().iterator();
+                        while (iterator.hasNext()) {
+                            Node leNode = iterator.next();
+                            if (leNode.getUserData() == c) {
+                                iterator.remove();
+                            }
+                        }
+
+                    }
+
+                }
+        );
+    }
+
+    public void updateCarte(Carte c)
+    {
+        imageCarte.setUserData(imageCarte);
+        imageCarte.setImage(new Image(getClass().getResource(c.getImage()).toExternalForm()));
+        imageCarte.layoutXProperty().bind(c.xProperty());
+        imageCarte.layoutYProperty().bind(c.yProperty());
     }
 
 
-//        GameManager.getInstance().getCartes().addListener((ListChangeListener.Change<? extends Carte> change) -> {
-//                    change.next();
-//                    for (Carte c : change.getAddedSubList()){
-//                        imageCarte.setUserData(c);
-//                        imageCarte.setImage(new Image(getClass().getResource(c.getImage()).toExternalForm()));
-//                        imageCarte.layoutXProperty().bind(c.xProperty());
-//                        imageCarte.layoutYProperty().bind(c.yProperty());
-//                    }
-
-//                    for (Carte c : change.getRemoved()){
-//                        Iterator<Node> iterator = MonPane.getChildren().iterator();
-//                        while (iterator.hasNext()){
-//                            Node leNode = iterator.next();
-//                            if(leNode.getUserData() == c)
-//                            {
-//                                iterator.remove();
-//                            }
-//                        }
-//
-//                    }
-
-//                }
-//        );
-
-
-        //this.chargeDonnéesListView();
-//    }
 
 }
 

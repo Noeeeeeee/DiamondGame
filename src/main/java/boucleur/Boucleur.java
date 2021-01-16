@@ -29,8 +29,8 @@ public abstract class Boucleur implements Runnable, Observable {
     }
     protected void beep() {
 
-        //mesObservateurs.forEach(o -> Platform.runLater(()-> o.invalidated(this)));
-        mesObservateurs.forEach(o ->o.invalidated(this));
+        mesObservateurs.forEach(o -> Platform.runLater(()-> o.invalidated(this))); //Faire tourner dans le thread principal
+        //mesObservateurs.forEach(o ->o.invalidated(this));
 
     }
 }
