@@ -39,7 +39,6 @@ public class Launch extends Application {
             System.out.println(e.getMessage());
         }
 
-
         GameManager manager = GameManager.getInstance();
 
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/VuePageAccueil.fxml"));

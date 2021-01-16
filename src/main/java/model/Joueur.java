@@ -53,4 +53,27 @@ public class Joueur {
     public String toString(){
         return  pseudo + "\nDiamants : "  + nbDiamantsJoueur;
     }
+
+    /**
+     * méthode equals qui compare entre deux objets, et ensuite entre deux instances de joueur.
+     * @param v
+     * @return
+     */
+    @Override
+    public boolean equals(Object v) {
+        if (this == v)
+            return true;
+        if (v == null)
+            return false;
+        if(getClass() != v.getClass())
+            return false;
+        //comparaison
+        Joueur p = (Joueur)v;
+        if(!getPseudo().equals(p.getPseudo()))
+            return false;
+        if(getNbdiamantsjoueur() != p.getNbdiamantsjoueur()) {
+            return false;
+        }
+        return isInside() == p.isInside();
+    }
 }
