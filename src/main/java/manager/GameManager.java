@@ -163,22 +163,21 @@ public class GameManager implements InvalidationListener {
     public String gagnant(ObservableList<Joueur> joueurs) {
         String debut = "Le gagnant est";
         String message = "";
-        for (Joueur j1 : joueurs){
-            for (Joueur j2 : joueurs){
-                if(!j1.equals(j2)){
-                    if(j1.getNbdiamantsjoueur() > j2.getNbdiamantsjoueur()){
+        for (Joueur j1 : joueurs) {
+            for (Joueur j2 : joueurs) {
+                if (!j1.equals(j2)) {
+                    if (j1.getNbdiamantsjoueur() > j2.getNbdiamantsjoueur()) {
                         message = debut + j1.getPseudo();
-                    }
-                    else{
+                    } else {
                         message = debut + j2.getPseudo();
                     }
                 }
 
             }
         }
-        if(message == ""){
+        if (message == "") {
             message = "Il n'y a aucun gagnant";
         }
         return message;
-
+    }
 }
