@@ -27,23 +27,37 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Classe du manager de l'application
+ */
 public class GameManager implements InvalidationListener {
+    /**
+     * Liste observable des joueurs du jeu
+     */
     private ObservableList<Joueur> joueurs = FXCollections.observableArrayList();
+    /**
+     * Attribut d'une partie
+     */
     private Partie p;
-    private int nbJoueurs;
+    /**
+     * Instanciation du CreateurCarteSimple
+     */
     private CreateurCarte leCreateur = new CreateurCarteSimple();
+    /**
+     * Instanciation du BoucleurDeJeu
+     */
     private Boucleur leBoucleur  = new BoucleurDeJeu();
+    /**
+     * Instanciation du KeyboardController
+     */
     private ControllerK controllerKeyboard = new ControllerK();
+    /**
+     * Déclaration de la variable de type Stage primaryStage
+     */
     private Stage primaryStage;
-    int cpt = 0;
 
 
     private StringProperty message = new SimpleStringProperty();
-
-
-    private GameManager(){
-
-    }
 
 
     private static GameManager instance = null;
@@ -58,55 +72,88 @@ public class GameManager implements InvalidationListener {
         return instance;
     }
 
+    /**
+     * Recupere le message définit dans la méthode gagnant
+     * @return le message
+     */
     public String getMessage() {
         return message.get();
     }
 
-    public StringProperty messageProperty() {
-        return message;
-    }
 
+    /**
+     * Set message
+     * @param message
+     */
     public void setMessage(String message) {
         this.message.set(message);
     }
 
+    /**
+     * Méthode permettant de creer une partie
+     * @param event
+     * @throws Exception
+     */
     public void creerPartie(javafx.event.ActionEvent event) throws Exception {
         this.p=new Partie(joueurs.size(),joueurs);
         this.chargerFenetre(FXMLLoader.load(getClass().getResource("/fxml/VuePageJeu.fxml")));
         leBoucleur.addListener(this);
         leBoucleur.setActive(true);
         new Thread(leBoucleur).start();
-        //controllerKeyboard.initializeInputControls(pageCreationScene);
+        controllerKeyboard.initializeInputControls(primaryStage.getScene());
 
     }
 
-
+    /**
+     * Méthode permettant d'ajouterJoueurs dans notre liste joueurs
+     * @param listView
+     */
     public void ajouterJoueurs(ListView<Joueur> listView){
         for (Joueur j:listView.getItems()) {
             joueurs.add(j);
         }
     }
 
-
+    /**
+     * Méthode permettant de lancer le jeu qui appelle creerPartie
+     * @param event
+     * @throws Exception
+     */
     public void lancerJeu(javafx.event.ActionEvent event) throws Exception {
         creerPartie(event);
     }
 
+    /**
+     * Méthode permettant de faire sortir un joueur de la partie
+     * @param j
+     * @throws Exception
+     */
     public void faireSortirJoueur(Joueur j) throws Exception {
         if (j!=null){
             p.faireSortirJoueur(j);
         }
     }
 
-
+    /**
+     * Méthode permettant de supprimer un joueur de la liste de joueurs
+     * @param j
+     */
     public void supprimerJoueurs(Joueur j){
         this.joueurs.remove(j);
     }
 
+    /**
+     * Recupere la liste de carte de la partie
+     * @return la liste de cartes
+     */
     public ObservableList<Carte> getCartes(){
         return p.getLesCartes();
     }
 
+    /**
+     * Méthode appelée par l'invalidated qui permet de sortir une carte dans le jeu et gère l'arrêt de la partie
+     * @throws IOException
+     */
     public void sortirCarte() throws IOException {
 
         Random rand=new Random();
@@ -118,14 +165,14 @@ public class GameManager implements InvalidationListener {
 
         }
         else {
-            if (r > 80) {
+            if (r > 85) {
                 leCreateur.CreateurCartePiege(p);
                 leBoucleur.setActive(false);
                 this.chargerFenetre(FXMLLoader.load(getClass().getResource("/fxml/VuePageAccueil.fxml")));
                 return;
             }
 
-            if (r <= 80) {
+            if (r <= 85) {
                 leCreateur.CreateurCarteDiamant(p);
                 for (Carte c : p.getLesCartes())
                     p.compteurDiamant((CarteDiamant) c);
@@ -135,6 +182,10 @@ public class GameManager implements InvalidationListener {
 
     }
 
+    /**
+     * Méthode Boolean permettant de savoir si il y a des joueurs restant dans la partie
+     * @return un booléen
+     */
     public Boolean JoueurRestant()
     {
         Boolean a = false;
@@ -149,32 +200,54 @@ public class GameManager implements InvalidationListener {
         return a;
     }
 
+    /**
+     * Méthode invalidated appelée par le boucleur
+     * @param observable
+     */
     @Override
     public void invalidated(Observable observable) {
         try {
             this.supp();
             sortirCarte();
-            } catch (IOException ioException) {
+        } catch (IOException ioException) {
             ioException.printStackTrace();
         }
     }
 
+    /**
+     * Méthode permettant du supprimer toutes les cartes de la liste de carte
+     */
     public void supp(){
         p.getLesCartes().removeAll(p.getLesCartes());
     }
 
+    /**
+     * Récupère la liste de joueurs
+     * @return la liste des joueurs
+     */
     public ObservableList<Joueur> getJoueurs(){
         return joueurs;
     }
 
+    /**
+     * Récupère la partie
+     * @return la partie p
+     */
     public Partie getP(){
         return p;
     }
 
+    /**
+     * Méthode permettant de stopper le boucleur
+     */
     public void stopBoucleur() {
         leBoucleur.setActive(false);
     }
 
+    /**
+     * Méthode permettant de chager une fenetre
+     * @param root
+     */
     public void chargerFenetre(Parent root)
     {
         Scene scene = new Scene(root);
@@ -183,15 +256,27 @@ public class GameManager implements InvalidationListener {
         primaryStage.show();
     }
 
+    /**
+     * Récupere le primaryStage
+     * @return le primaryStage
+     */
     public Stage getPrimaryStage() {
         return primaryStage;
     }
 
+    /**
+     * Set la primaryStage
+     * @param primaryStage
+     */
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
 
-
+    /**
+     * Méthode permettant de définir un gagnant de la partie
+     * @param listeInsideJoueurs
+     * @return le message à afficher
+     */
     public StringProperty gagnant(ObservableList<Joueur> listeInsideJoueurs) {
         String debut = "Le gagnant est ";
         message.setValue("");
@@ -212,19 +297,25 @@ public class GameManager implements InvalidationListener {
 
         }
         if (listeInsideJoueurs.size() ==1)
-            message.setValue("1 seul gagnant :" + listeInsideJoueurs.get(0).getPseudo());
+            message.setValue("Le gagnant est : " + listeInsideJoueurs.get(0).getPseudo());
         if (message.getValue()=="")
             message.setValue("Il n'y a aucun gagnant");
         return message;
     }
 
+    /**
+     * Méthode permettant d'ajouter les joueurs qui ne sont pas dans la partie (utile pour la méthode gagnant)
+     * @param joueurs
+     * @return la liste auxiliaire listeInsideJoueur
+     */
     public ObservableList<Joueur> ajoutListeInsideJoueurs(ObservableList<Joueur> joueurs)
     {
         ObservableList<Joueur> listeInsideJoueurs = FXCollections.observableArrayList();
-       for (Joueur j : joueurs) {
-           if (!j.isInside())
-               listeInsideJoueurs.add(j);
-       }
-       return listeInsideJoueurs;
+        for (Joueur j : joueurs) {
+            if (!j.isInside())
+                listeInsideJoueurs.add(j);
+        }
+        return listeInsideJoueurs;
     }
 }
+

@@ -96,6 +96,10 @@ public class PageJeuControler {
         joueurPosition();
     }
 
+    /**
+     * Méthode permettant de créer une image view et de set l'image reçu
+     * @param c
+     */
     public void updateCarte(Carte c)
     {
         ImageView imageCarte = new ImageView();
@@ -108,6 +112,11 @@ public class PageJeuControler {
         MonPane.getChildren().add((imageCarte));
     }
 
+    /**
+     * Action lorsque l'utilisateur clique sur sortir
+     * @param actionEvent
+     * @throws Exception
+     */
     public void buttonSortir(ActionEvent actionEvent) throws Exception {
         Joueur j=joueurs.getSelectionModel().getSelectedItem();
         if(j!=null){
