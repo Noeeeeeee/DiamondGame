@@ -30,7 +30,7 @@ public class Launch extends Application {
         GameManager manager = GameManager.getInstance();
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/VuePageAccueil.fxml"));
-            Scene scene = new Scene(root, 700, 400);
+            Scene scene = new Scene(root, 750, 450);
             scene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.show();

@@ -8,7 +8,4 @@ public abstract class CreateurCarte {
 
     public abstract void CreateurCartePiege(Partie p);
 
-    public abstract void CreateurCarteTresor(Partie p);
-
-
 }

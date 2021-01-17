@@ -8,6 +8,10 @@ public class CarteDiamant extends Carte{
     }
 
 
+    /**
+     * methode qui génère un nombre de diamants aléatoire entre 1 et 15
+     * @return
+     */
     public int getDiamants() {
         Random rand=new Random();
         int r= rand.nextInt(15)+1;

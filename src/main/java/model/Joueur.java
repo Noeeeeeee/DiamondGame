@@ -6,12 +6,25 @@ import KeyboardController.ControllerK;
 import java.awt.event.KeyEvent;
 
 public class Joueur {
+    /**
+     * pseudo du Joueur
+     */
     private String pseudo;
+    /**
+     * nombre de diamant du Joueur
+     */
     private int nbDiamantsJoueur;
+    /**
+     * permet de savoir si le joueur est dans la pyramide ou non (true/false)
+     */
     private boolean inside;
-    private boolean aJoue;
 
 
+    /**
+     * Constructeur d'un joueur avec son pseudo et son nombre de diamant ainsi que sa position initialisée à true donc dans la pyramide
+     * @param pseudo
+     * @param nbDiamantsJoueur
+     */
     public Joueur (String pseudo, int nbDiamantsJoueur)
     {
         this.pseudo=pseudo;
@@ -19,15 +32,12 @@ public class Joueur {
         this.inside=true;
     }
 
+    /**
+     * retourne la position du joueur
+     * @return
+     */
     public boolean isInside() {
         return inside;
-    }
-
-    public void rentrer() throws Exception {
-        if (!inside){
-            inside=true;
-        }
-        throw new Exception("Déjà dedans");
     }
 
     public void sortir() throws Exception {

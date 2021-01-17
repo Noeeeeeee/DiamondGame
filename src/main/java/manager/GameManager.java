@@ -73,7 +73,6 @@ public class GameManager implements InvalidationListener {
     public void creerPartie(javafx.event.ActionEvent event) throws Exception {
         this.p=new Partie(joueurs.size(),joueurs);
         this.chargerFenetre(FXMLLoader.load(getClass().getResource("/fxml/VuePageJeu.fxml")));
-        p.lancerTour();
         leBoucleur.addListener(this);
         leBoucleur.setActive(true);
         new Thread(leBoucleur).start();
@@ -88,10 +87,6 @@ public class GameManager implements InvalidationListener {
         }
     }
 
-    public void prochainTour() throws Exception {
-        p.lancerTour();
-    }
-
 
     public void lancerJeu(javafx.event.ActionEvent event) throws Exception {
         creerPartie(event);
@@ -99,7 +94,7 @@ public class GameManager implements InvalidationListener {
 
     public void faireSortirJoueur(Joueur j) throws Exception {
         if (j!=null){
-            p.getT().faireSortirJoueur(j);
+            p.faireSortirJoueur(j);
         }
     }
 
@@ -123,14 +118,14 @@ public class GameManager implements InvalidationListener {
 
         }
         else {
-            if (r > 65) {
+            if (r > 80) {
                 leCreateur.CreateurCartePiege(p);
                 leBoucleur.setActive(false);
                 this.chargerFenetre(FXMLLoader.load(getClass().getResource("/fxml/VuePageAccueil.fxml")));
                 return;
             }
 
-            if (r <= 65) {
+            if (r <= 80) {
                 leCreateur.CreateurCarteDiamant(p);
                 for (Carte c : p.getLesCartes())
                     p.compteurDiamant((CarteDiamant) c);

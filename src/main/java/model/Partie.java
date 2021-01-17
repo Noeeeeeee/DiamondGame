@@ -15,7 +15,6 @@ import java.util.Random;
 public class Partie {
     private final int nbJoueur;
     private int nbPiege;
-    private Tour t;
     private ObservableList<Joueur> lesJoueurs = FXCollections.observableArrayList();;
     private ObservableList<Carte> lesCartesObs = FXCollections.observableArrayList();
     private ListProperty<Carte> lesCartesProp = new SimpleListProperty<>(lesCartesObs);
@@ -24,6 +23,12 @@ public class Partie {
 
     private SimpleIntegerProperty nombreDiamantCourant = new SimpleIntegerProperty();
 
+    /**
+     * Creer une partie avec 0 piege et des joueurs en paramètre
+     * @param nbJoueur
+     * @param j
+     * @throws Exception
+     */
     public Partie(int nbJoueur, ObservableList<Joueur> j) throws Exception{
         this.nbJoueur=nbJoueur;
         for (Joueur joueur:j) {
@@ -32,19 +37,13 @@ public class Partie {
         this.nbPiege=0;
     }
 
-    public void lancerTour() throws Exception {
-        t=new Tour(nbJoueur,lesJoueurs);
+    public void faireSortirJoueur(Joueur j) throws Exception {
+        j.sortir();
     }
 
     public ListProperty<Carte> lesCartesProperty(){return lesCartesProp;}
 
     public ObservableList<Carte> getLesCartes() {return lesCartesObs;}
-
-    public void ajouterCarteView(Carte c){ lesCartesObs.add(c);}
-
-    public int getNbJoueur() {
-        return this.nbJoueur;
-    }
 
     public SimpleIntegerProperty getNombreDiamantCourant() { return nombreDiamantCourant; }
 
@@ -58,18 +57,6 @@ public class Partie {
         return   " nb joueurs : " + nbJoueur + " joueurs : " + lesJoueurs + " cartes :" +lesCartesObs ;
     }
 
-    public void supprimerCarte(Carte carte) {
-        lesCartesObs.remove(carte);
-    }
-
-    public Tour getT() {
-        return t;
-    }
-
-    public void setT(Tour t) {
-        this.t = t;
-    }
-
     public SimpleIntegerProperty getNombreTotalDeDiamant() { return nombreTotalDeDiamant; }
 
     public void compteurDiamant(CarteDiamant c)
@@ -77,7 +64,4 @@ public class Partie {
         nombreDiamantCourant.setValue(c.getDiamants());
         nombreTotalDeDiamant.set(this.nombreTotalDeDiamant.get() + nombreDiamantCourant.get());
     }
-
-
-
 }
