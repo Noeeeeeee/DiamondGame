@@ -4852,11 +4852,30 @@
 									"model": {
 										"$ref": "AAAAAAF3EQiBjgWk1SI="
 									},
+									"subViews": [
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAF3ESNh2lQlc9c=",
+											"_parent": {
+												"$ref": "AAAAAAF3EQiBjgWs8So="
+											},
+											"model": {
+												"$ref": "AAAAAAF3ESNhyVQQpx8="
+											},
+											"font": "Arial;13;0",
+											"left": 1653,
+											"top": 478,
+											"width": 306.0458984375,
+											"height": 13,
+											"text": "-/primaryStage: Stage",
+											"horizontalAlignment": 0
+										}
+									],
 									"font": "Arial;13;0",
 									"left": 1648,
 									"top": 473,
 									"width": 316.0458984375,
-									"height": 10
+									"height": 23
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -4879,7 +4898,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1653,
-											"top": 488,
+											"top": 501,
 											"width": 306.0458984375,
 											"height": 13,
 											"text": "+GameManager()",
@@ -4896,7 +4915,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1653,
-											"top": 503,
+											"top": 516,
 											"width": 306.0458984375,
 											"height": 13,
 											"text": "+creerPartie()",
@@ -4913,7 +4932,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1653,
-											"top": 518,
+											"top": 531,
 											"width": 306.0458984375,
 											"height": 13,
 											"text": "+ajouterJoueur(listView : ListView<Joueur>)",
@@ -4930,7 +4949,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1653,
-											"top": 533,
+											"top": 546,
 											"width": 306.0458984375,
 											"height": 13,
 											"text": "+faireSortirJoueur(j: Joueur)",
@@ -4947,7 +4966,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1653,
-											"top": 548,
+											"top": 561,
 											"width": 306.0458984375,
 											"height": 13,
 											"text": "+sortirCarte()",
@@ -4964,7 +4983,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1653,
-											"top": 563,
+											"top": 576,
 											"width": 306.0458984375,
 											"height": 13,
 											"text": "+invalidated()",
@@ -4981,7 +5000,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1653,
-											"top": 578,
+											"top": 591,
 											"width": 306.0458984375,
 											"height": 13,
 											"text": "+supp()",
@@ -4998,7 +5017,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1653,
-											"top": 593,
+											"top": 606,
 											"width": 306.0458984375,
 											"height": 13,
 											"text": "+stopJoueur()",
@@ -5015,7 +5034,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1653,
-											"top": 608,
+											"top": 621,
 											"width": 306.0458984375,
 											"height": 13,
 											"text": "+chargerFenêtre(root: Parent)",
@@ -5032,7 +5051,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1653,
-											"top": 623,
+											"top": 636,
 											"width": 306.0458984375,
 											"height": 13,
 											"text": "+gagnant(listInsideJoueur : ObservableList<Joueur>)",
@@ -5041,7 +5060,7 @@
 									],
 									"font": "Arial;13;0",
 									"left": 1648,
-									"top": 483,
+									"top": 496,
 									"width": 316.0458984375,
 									"height": 158
 								},
@@ -9583,6 +9602,18 @@
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
 					"name": "GameManager",
+					"attributes": [
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAF3ESNhyVQQpx8=",
+							"_parent": {
+								"$ref": "AAAAAAF3EQiBjgWk1SI="
+							},
+							"name": "/primaryStage",
+							"visibility": "private",
+							"type": "Stage"
+						}
+					],
 					"operations": [
 						{
 							"_type": "UMLOperation",

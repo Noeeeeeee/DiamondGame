@@ -30,12 +30,13 @@ public class Joueur {
     /**
      * Constructeur d'un joueur avec son pseudo et son nombre de diamant ainsi que sa position initialisée à true donc dans la pyramide
      * @param pseudo
+     * @param nbDiamantsJoueur
      */
-    public Joueur (String pseudo)
+    public Joueur (String pseudo, int nbDiamantsJoueur)
     {
         this.pseudo.setValue(pseudo);
+        this.nbDiamantsJoueur=nbDiamantsJoueur;
         this.inside=true;
-        nbDiamantsJoueur=0;
     }
 
     /**
@@ -54,34 +55,18 @@ public class Joueur {
         throw new Exception("Déjà sortie");
     }
 
-    /**
-     * Set le pseudo d'un joueur
-     * @param pseudo
-     */
     public void setPseudo(String pseudo) {
         this.pseudo.setValue(pseudo);
     }
 
-    /**
-     * Recupere le pseudo d'un joueur
-     * @return le pseudo du joueur
-     */
     public String getPseudo() {
         return pseudo.get();
     }
 
-    /**
-     * Set le nombre de diamants par joueur
-     * @param nbdiamantsjoueur
-     */
     public void setNbdiamantsjoueur(int nbdiamantsjoueur) {
         this.nbDiamantsJoueur+=nbdiamantsjoueur;
     }
 
-    /**
-     * Recupere le nombreDeDiamant d'un joueur
-     * @return le nombre de diamants du joueur
-     */
     public int getNbdiamantsjoueur(){
         return nbDiamantsJoueur;
     }
@@ -94,7 +79,7 @@ public class Joueur {
     /**
      * méthode equals qui compare entre deux objets, et ensuite entre deux instances de joueur.
      * @param v
-     * @return un booléen
+     * @return
      */
     @Override
     public boolean equals(Object v) {
