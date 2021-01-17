@@ -8,6 +8,9 @@ import model.Joueur;
 
 import java.util.jar.JarEntry;
 
+/**
+ * Classe du keyboardController
+ */
 public class ControllerK {
 
     public void initializeInputControls(Scene scene)throws Exception {

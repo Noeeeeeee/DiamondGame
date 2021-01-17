@@ -12,15 +12,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Classe Partie qui représente notre partie
+ */
 public class Partie {
+    /**
+     * Nombre de joueurs dans la partie
+     */
     private final int nbJoueur;
-    private int nbPiege;
-    private ObservableList<Joueur> lesJoueurs = FXCollections.observableArrayList();;
+    /**
+     * Liste Observable de nos joueurs dans la partie
+     */
+    private ObservableList<Joueur> lesJoueurs = FXCollections.observableArrayList();
+    /**
+     * Liste observable de notre liste de cartes
+     */
     private ObservableList<Carte> lesCartesObs = FXCollections.observableArrayList();
-    private ListProperty<Carte> lesCartesProp = new SimpleListProperty<>(lesCartesObs);
+    /**
+     * Nombre total de Diamant dans la partie
+     */
     private SimpleIntegerProperty nombreTotalDeDiamant = new SimpleIntegerProperty();
 
-
+    private ListProperty<Carte> lesCartesProp = new SimpleListProperty<>(lesCartesObs);
+    /**
+     * Nombre de diamant d'une carte
+     */
     private SimpleIntegerProperty nombreDiamantCourant = new SimpleIntegerProperty();
 
     /**
@@ -34,20 +50,33 @@ public class Partie {
         for (Joueur joueur:j) {
             lesJoueurs.add(joueur);
         }
-        this.nbPiege=0;
     }
 
+    /**
+     * Méthode permettant de faire sortir un joueur de la partie
+     * @param j
+     * @throws Exception
+     */
     public void faireSortirJoueur(Joueur j) throws Exception {
         j.sortir();
     }
 
-    public ListProperty<Carte> lesCartesProperty(){return lesCartesProp;}
-
+    /**
+     * recupere la liste des cartes
+     * @return la liste des cartes
+     */
     public ObservableList<Carte> getLesCartes() {return lesCartesObs;}
 
+    /**
+     * Recupere nombreDeDiamant d'une carte
+     * @return le nombre de diamant d'une carte
+     */
     public SimpleIntegerProperty getNombreDiamantCourant() { return nombreDiamantCourant; }
 
-
+    /**
+     * Méthode permettant d'ajouter une carte dans la liste des cartes
+     * @param carte
+     */
     public void ajouterCarte(Carte carte) {
         lesCartesObs.add(carte);
     }
@@ -57,8 +86,16 @@ public class Partie {
         return   " nb joueurs : " + nbJoueur + " joueurs : " + lesJoueurs + " cartes :" +lesCartesObs ;
     }
 
+    /**
+     * Recupere le nombreTotalDeDiamant d'une partie
+     * @return le nombre total de diamant d'une partie
+     */
     public SimpleIntegerProperty getNombreTotalDeDiamant() { return nombreTotalDeDiamant; }
 
+    /**
+     * Méthode permettant de compter le nombre total de diamant dans une partie
+     * @param c
+     */
     public void compteurDiamant(CarteDiamant c)
     {
         nombreDiamantCourant.setValue(c.getDiamants());

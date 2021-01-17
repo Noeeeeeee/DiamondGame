@@ -54,18 +54,34 @@ public class Joueur {
         throw new Exception("Déjà sortie");
     }
 
+    /**
+     * Set le pseudo d'un joueur
+     * @param pseudo
+     */
     public void setPseudo(String pseudo) {
         this.pseudo.setValue(pseudo);
     }
 
+    /**
+     * Recupere le pseudo d'un joueur
+     * @return le pseudo du joueur
+     */
     public String getPseudo() {
         return pseudo.get();
     }
 
+    /**
+     * Set le nombre de diamants par joueur
+     * @param nbdiamantsjoueur
+     */
     public void setNbdiamantsjoueur(int nbdiamantsjoueur) {
         this.nbDiamantsJoueur+=nbdiamantsjoueur;
     }
 
+    /**
+     * Recupere le nombreDeDiamant d'un joueur
+     * @return le nombre de diamants du joueur
+     */
     public int getNbdiamantsjoueur(){
         return nbDiamantsJoueur;
     }
@@ -78,7 +94,7 @@ public class Joueur {
     /**
      * méthode equals qui compare entre deux objets, et ensuite entre deux instances de joueur.
      * @param v
-     * @return
+     * @return un booléen
      */
     @Override
     public boolean equals(Object v) {

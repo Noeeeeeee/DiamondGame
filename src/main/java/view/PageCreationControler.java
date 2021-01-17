@@ -19,6 +19,8 @@ import javafx.util.Callback;
 import manager.GameManager;
 import model.Joueur;
 
+import java.io.IOException;
+
 public class PageCreationControler {
     /**
      * Configure la listeView des personnes présentes dans la partie
@@ -83,14 +85,24 @@ public class PageCreationControler {
     }
 
 
-
-
+    /**
+     * Action lorsque l'utilisateur clique sur retour
+     * @param actionEvent
+     */
     @FXML
     private void RetourBouton(javafx.event.ActionEvent actionEvent) {
-        Stage stage = (Stage) retour.getScene().getWindow();
-        stage.close();
+        try {
+            GameManager.getInstance().chargerFenetre(FXMLLoader.load(getClass().getResource("/fxml/VuePageAccueil.fxml")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    /**
+     * Action lorsque l'utilisateur clique sur le bouton CréerPartie
+     * @param event
+     * @throws Exception
+     */
     @FXML
     public void CreationPartieBouton(javafx.event.ActionEvent event) throws Exception {
         if(listeJoueurs.getItems().isEmpty()){
