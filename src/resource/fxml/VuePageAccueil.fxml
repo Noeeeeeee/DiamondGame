@@ -31,7 +31,7 @@
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
                 </Button>
-                <Button fx:id="exitBouton" focusTraversable="false" layoutX="148.0" layoutY="351.0" onAction="#clicBoutonExit" prefHeight="29.0" prefWidth="137.0" style="-fx-background-color: orange;" text="EXIT">
+                <Button fx:id="exitBouton" focusTraversable="false" layoutX="148.0" layoutY="351.0" onAction="#clicBoutonExit" prefHeight="29.0" prefWidth="137.0" text="EXIT">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -51,4 +51,12 @@
             </BorderPane.margin>
         </Label>
     </left>
+    <top>
+        <Label fx:id="gagnant" contentDisplay="RIGHT" prefHeight="22.0" prefWidth="496.0" textFill="aliceblue" BorderPane.alignment="CENTER">
+            <font>
+                <Font size="13.0" />
+
+            </font>
+        </Label>
+    </top>
 </BorderPane>

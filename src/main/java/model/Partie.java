@@ -2,6 +2,7 @@ package model;
 
 import javafx.beans.Observable;
 import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,7 +19,7 @@ public class Partie {
     private ObservableList<Joueur> lesJoueurs = FXCollections.observableArrayList();;
     private ObservableList<Carte> lesCartesObs = FXCollections.observableArrayList();
     private ListProperty<Carte> lesCartesProp = new SimpleListProperty<>(lesCartesObs);
-    private int nombreTotalDeDiamant;
+    private SimpleIntegerProperty nombreTotalDeDiamant = new SimpleIntegerProperty();
 
     public Partie(int nbJoueur, ObservableList<Joueur> j) throws Exception{
         this.nbJoueur=nbJoueur;
@@ -64,10 +65,10 @@ public class Partie {
         this.t = t;
     }
 
-    public int getNombreTotalDeDiamant() { return nombreTotalDeDiamant; }
+    public SimpleIntegerProperty getNombreTotalDeDiamant() { return nombreTotalDeDiamant; }
 
     public void compteurDiamant(CarteDiamant c)
     {
-        this.nombreTotalDeDiamant+=c.getDiamants();
+        nombreTotalDeDiamant.set(this.nombreTotalDeDiamant.get() + c.getDiamants());
     }
 }

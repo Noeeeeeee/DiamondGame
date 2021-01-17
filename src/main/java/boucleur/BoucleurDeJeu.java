@@ -7,7 +7,7 @@ public class BoucleurDeJeu extends Boucleur{
         while (running) {
             beep();
             try {
-                Thread.sleep(5000);
+                Thread.sleep(10000);
             } catch (InterruptedException e) {
                 running = false;
             }

@@ -16,6 +16,7 @@ import model.Joueur;
 import model.Partie;
 
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -26,17 +27,18 @@ public class Launch extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-
-        Joueur jean=new Joueur("jean",0);
-        ObservableList<Joueur> j = FXCollections.observableArrayList(jean,new Joueur("oui",0));
-
         GameManager manager = GameManager.getInstance();
-
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/VuePageAccueil.fxml"));
-        Scene scene = new Scene(root, 700, 400);
-        scene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/VuePageAccueil.fxml"));
+            Scene scene = new Scene(root, 700, 400);
+            scene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
+            primaryStage.setScene(scene);
+            primaryStage.show();
+            manager.setPrimaryStage(primaryStage);
+        }
+        catch (IOException e){
+            System.out.println(e);
+        }
 
     }
 

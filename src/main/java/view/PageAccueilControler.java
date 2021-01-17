@@ -1,5 +1,6 @@
 package view;
 
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,12 +8,17 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import manager.GameManager;
 
 import java.awt.*;
 import java.io.IOException;
 
 public class PageAccueilControler {
+
+    @FXML
+    private Label gagnant;
 
     @FXML private Button exitBouton;
     /**
@@ -22,13 +28,8 @@ public class PageAccueilControler {
     @FXML
     private void clicBoutonLancer(ActionEvent event) throws IOException
     {
-        Parent PageCreationParent = FXMLLoader.load(getClass().getResource("/fxml/VuePageCreationPartie.fxml"));
-        Scene PageCreationScene = new Scene(PageCreationParent);
+        GameManager.getInstance().chargerFenetre(FXMLLoader.load(getClass().getResource("/fxml/VuePageCreationPartie.fxml")));
 
-        //Cette ligne retourne les informations de la scene
-        Stage fenetre = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        fenetre.setScene(PageCreationScene);
-        fenetre.show();
     }
 
     /**
@@ -40,5 +41,12 @@ public class PageAccueilControler {
         stage.close();
     }
 
+    public void initialize() {
+        if (GameManager.getInstance().getP() != null) {
+            Bindings.bindBidirectional(gagnant.textProperty(), GameManager.getInstance().gagnant(GameManager.getInstance().ajoutListeInsideJoueurs(GameManager.getInstance().getJoueurs())));
+            GameManager.getInstance().getJoueurs().removeAll(GameManager.getInstance().getJoueurs());
+        }
+
+    }
 
 }

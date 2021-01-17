@@ -18,6 +18,7 @@ import manager.GameManager;
 import model.Carte;
 import model.Joueur;
 
+import java.awt.*;
 import java.net.URI;
 import java.util.Iterator;
 
@@ -41,16 +42,6 @@ public class PageJeuControler {
     @FXML
     private Label nombreTotal;
 
-    /*@FXML
-    private void chargeDonnéesListView(){
-        list.removeAll();
-        String j1 = "joueur1";
-        String j2 = "joueur2";
-        String j3 = "joueur3";
-        String j4 = "joueur4";
-        list.addAll(j1, j2, j3, j4);
-        listeJoueurs.getItems().addAll(list);
-    }*/
 
 
     /**
@@ -74,9 +65,6 @@ public class PageJeuControler {
     }
 
     public void initialize() throws Exception {
-        for (Carte c : GameManager.getInstance().getCartes()) {
-            updateCarte(c);
-        }
         Bindings.bindBidirectional(nombreTotal.textProperty(),GameManager.getInstance().getP().getNombreTotalDeDiamant(),new NumberStringConverter());
 
         GameManager.getInstance().getCartes().addListener((ListChangeListener.Change<? extends Carte> change) -> {
@@ -106,16 +94,21 @@ public class PageJeuControler {
 
     public void updateCarte(Carte c)
     {
-        imageCarte.setUserData(imageCarte);
+        ImageView imageCarte = new ImageView();
+        imageCarte.setUserData(c);
         imageCarte.setImage(new Image(getClass().getResource(c.getImage()).toExternalForm()));
+        imageCarte.setFitHeight(c.getMaxHeight());
+        imageCarte.setFitWidth(c.getMaxWidth());
         imageCarte.layoutXProperty().bind(c.xProperty());
         imageCarte.layoutYProperty().bind(c.yProperty());
+        MonPane.getChildren().add((imageCarte));
     }
 
     public void buttonSortir(ActionEvent actionEvent) throws Exception {
         Joueur j=joueurs.getSelectionModel().getSelectedItem();
         if(j!=null){
             GameManager.getInstance().faireSortirJoueur(j);
+            j.setNbdiamantsjoueur(GameManager.getInstance().getP().getNombreTotalDeDiamant().getValue());
         }
         joueurPosition();
     }

@@ -1,5 +1,24 @@
 
 
-#BoutonCreer {
+.button {
+    -fx-background-color: orange;
+}
 
+
+
+.list-view {
+    -fx-background-color: #ffc300;
+}
+
+#AnchorCreation {
+    -fx-background-color: #20120F;
+}
+
+#labelCreation {
+    -fx-background-color: #20120F;
+    -fx-text-Fill: #ffc300;
+}
+
+#listviewCreation {
+    -fx-background-color: #20120F;
 }

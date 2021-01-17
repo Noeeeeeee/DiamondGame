@@ -6,6 +6,8 @@ import boucleur.BoucleurDeJeu;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +21,8 @@ import model.createurs.CreateurCarte;
 import model.createurs.CreateurCarteSimple;
 import javafx.event.ActionEvent;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -30,8 +34,12 @@ public class GameManager implements InvalidationListener {
     private CreateurCarte leCreateur = new CreateurCarteSimple();
     private Boucleur leBoucleur  = new BoucleurDeJeu();
     private ControllerK controllerKeyboard = new ControllerK();
-    public Carte carteCourante;
-    private Stage stage;
+    private Stage primaryStage;
+    int cpt = 0;
+
+
+    private StringProperty message = new SimpleStringProperty();
+
 
     private GameManager(){
 
@@ -50,24 +58,29 @@ public class GameManager implements InvalidationListener {
         return instance;
     }
 
+    public String getMessage() {
+        return message.get();
+    }
 
+    public StringProperty messageProperty() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message.set(message);
+    }
 
     public void creerPartie(javafx.event.ActionEvent event) throws Exception {
         this.p=new Partie(joueurs.size(),joueurs);
-        leCreateur.CreateurCarteDiamant(p);
-        Parent pageCreationParent = FXMLLoader.load(getClass().getResource("/fxml/VuePageJeu.fxml"));
-        Scene pageCreationScene = new Scene(pageCreationParent, 790, 470);
-        //stage.setScene(pageCreationScene);
-        Stage fenetre = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        fenetre.setScene(pageCreationScene);
-        fenetre.show();
+        this.chargerFenetre(FXMLLoader.load(getClass().getResource("/fxml/VuePageJeu.fxml")));
         p.lancerTour();
         leBoucleur.addListener(this);
         leBoucleur.setActive(true);
         new Thread(leBoucleur).start();
-        controllerKeyboard.initializeInputControls(pageCreationScene);
+        //controllerKeyboard.initializeInputControls(pageCreationScene);
 
     }
+
 
     public void ajouterJoueurs(ListView<Joueur> listView){
         for (Joueur j:listView.getItems()) {
@@ -79,9 +92,6 @@ public class GameManager implements InvalidationListener {
         p.lancerTour();
     }
 
-    public Carte getCarteCourante() {
-        return carteCourante;
-    }
 
     public void lancerJeu(javafx.event.ActionEvent event) throws Exception {
         creerPartie(event);
@@ -102,24 +112,53 @@ public class GameManager implements InvalidationListener {
         return p.getLesCartes();
     }
 
-    public void SortirCarte()
-    {
-        ObservableList<Carte> listeCarte = p.getLesCartes();
-        listeCarte.removeAll(listeCarte);
+    public void sortirCarte() throws IOException {
 
         Random rand=new Random();
         int r = rand.nextInt(99);
-        if(r<50)
+        if(r>96) {
             leCreateur.CreateurCartePiege(p);
-        if(r>=50){
+            leBoucleur.setActive(false);
+            this.chargerFenetre(FXMLLoader.load(getClass().getResource("/fxml/VuePageAccueil.fxml")));
+        }
+
+        if(r<=96){
             leCreateur.CreateurCarteDiamant(p);
             for (Carte c : p.getLesCartes())
                 p.compteurDiamant((CarteDiamant)c);
         }
+
+        if (!JoueurRestant()) {
+            leBoucleur.setActive(false);
+            this.chargerFenetre(FXMLLoader.load(getClass().getResource("/fxml/VuePageAccueil.fxml")));
+        }
+
+
     }
+
+    public Boolean JoueurRestant()
+    {
+        for (Joueur j : joueurs)
+        {
+            if(j.isInside())
+                return true;
+        }
+
+        return false;
+    }
+
     @Override
     public void invalidated(Observable observable) {
-        SortirCarte();
+        try {
+            this.supp();
+            sortirCarte();
+            } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+    }
+
+    public void supp(){
+        p.getLesCartes().removeAll(p.getLesCartes());
     }
 
     public ObservableList<Joueur> getJoueurs(){
@@ -134,51 +173,55 @@ public class GameManager implements InvalidationListener {
         leBoucleur.setActive(false);
     }
 
-    public ObservableList<Joueur> ajouterJoueurs(){
-        joueurs.add(new Joueur("Meriem",0 ));
-        return joueurs;
-    }
-
-    public void sortirCarte()
+    public void chargerFenetre(Parent root)
     {
-        p.getLesCartes().removeAll(p.getLesCartes());
-        Random rand=new Random();
-        int r = rand.nextInt(99);
-        if(r<95)
-            leCreateur.CreateurCartePiege(p);
-
-        if(r>=95){
-            leCreateur.CreateurCarteDiamant(p);
-        }
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
-    public Stage getStage() {
-        return stage;
+    public Stage getPrimaryStage() {
+        return primaryStage;
     }
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
     }
 
 
-    public String gagnant(ObservableList<Joueur> joueurs) {
-        String debut = "Le gagnant est";
-        String message = "";
-        for (Joueur j1 : joueurs) {
-            for (Joueur j2 : joueurs) {
-                if (!j1.equals(j2)) {
-                    if (j1.getNbdiamantsjoueur() > j2.getNbdiamantsjoueur()) {
-                        message = debut + j1.getPseudo();
-                    } else {
-                        message = debut + j2.getPseudo();
+    public StringProperty gagnant(ObservableList<Joueur> listeInsideJoueurs) {
+        String debut = "Le gagnant est ";
+        message.setValue("");
+        if (listeInsideJoueurs.size() > 1) {
+            for (Joueur j1 : listeInsideJoueurs) {
+                for (Joueur j2 : listeInsideJoueurs) {
+
+                    if (!j1.equals(j2)) {
+                        if (j1.getNbdiamantsjoueur() > j2.getNbdiamantsjoueur()) {
+                            message.setValue(debut + j1.getPseudo() + " avec un nombre de : " + j1.getNbdiamantsjoueur() + "diamants");
+                        } else {
+                            message.setValue(debut + j2.getPseudo() + " avec un nombre de : " + j2.getNbdiamantsjoueur() + "diamants");
+                        }
                     }
-                }
 
+                }
             }
+
         }
-        if (message == "") {
-            message = "Il n'y a aucun gagnant";
-        }
+        if (listeInsideJoueurs.size() ==1)
+            message.setValue("1 seul gagnant");
+        if (message.getValue()=="")
+            message.setValue("Il n'y a aucun gagnant");
         return message;
+    }
+
+    public ObservableList<Joueur> ajoutListeInsideJoueurs(ObservableList<Joueur> joueurs)
+    {
+        ObservableList<Joueur> listeInsideJoueurs = FXCollections.observableArrayList();
+       for (Joueur j : joueurs)
+           if(!j.isInside())
+               listeInsideJoueurs.add(j);
+       return listeInsideJoueurs;
     }
 }

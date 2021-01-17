@@ -2,11 +2,13 @@ package model.createurs;
 
 import model.*;
 
-public class CreateurCarteSimple extends CreateurCarte {
+import java.util.Random;
 
+public class CreateurCarteSimple extends CreateurCarte {
+    Random rand=new Random();
     @Override
     public void CreateurCarteDiamant(Partie p) {
-        p.ajouterCarte(new CarteDiamant(100, 80, "/img/carteDiamant.jpg"));
+        p.ajouterCarte(new CarteDiamant(rand.nextInt(100),rand.nextInt(100), "/img/carteDiamant.png"));
     }
 
     @Override
