@@ -116,21 +116,25 @@ public class GameManager implements InvalidationListener {
 
         Random rand=new Random();
         int r = rand.nextInt(99);
-        if(r>65) {
-            leCreateur.CreateurCartePiege(p);
-            leBoucleur.setActive(false);
-            this.chargerFenetre(FXMLLoader.load(getClass().getResource("/fxml/VuePageAccueil.fxml")));
-        }
-
-        if(r<=65){
-            leCreateur.CreateurCarteDiamant(p);
-            for (Carte c : p.getLesCartes())
-                p.compteurDiamant((CarteDiamant)c);
-        }
-
         if (!JoueurRestant()) {
             leBoucleur.setActive(false);
             this.chargerFenetre(FXMLLoader.load(getClass().getResource("/fxml/VuePageAccueil.fxml")));
+            return;
+
+        }
+        else {
+            if (r > 65) {
+                leCreateur.CreateurCartePiege(p);
+                leBoucleur.setActive(false);
+                this.chargerFenetre(FXMLLoader.load(getClass().getResource("/fxml/VuePageAccueil.fxml")));
+                return;
+            }
+
+            if (r <= 65) {
+                leCreateur.CreateurCarteDiamant(p);
+                for (Carte c : p.getLesCartes())
+                    p.compteurDiamant((CarteDiamant) c);
+            }
         }
 
 
@@ -138,13 +142,16 @@ public class GameManager implements InvalidationListener {
 
     public Boolean JoueurRestant()
     {
+        Boolean a = false;
+
         for (Joueur j : joueurs)
         {
             if(j.isInside())
-                return true;
+                a= true;
+            else a = false;
         }
 
-        return false;
+        return a;
     }
 
     @Override
@@ -210,7 +217,7 @@ public class GameManager implements InvalidationListener {
 
         }
         if (listeInsideJoueurs.size() ==1)
-            message.setValue("1 seul gagnant");
+            message.setValue("1 seul gagnant :" + listeInsideJoueurs.get(0).getPseudo());
         if (message.getValue()=="")
             message.setValue("Il n'y a aucun gagnant");
         return message;
@@ -219,9 +226,10 @@ public class GameManager implements InvalidationListener {
     public ObservableList<Joueur> ajoutListeInsideJoueurs(ObservableList<Joueur> joueurs)
     {
         ObservableList<Joueur> listeInsideJoueurs = FXCollections.observableArrayList();
-       for (Joueur j : joueurs)
-           if(!j.isInside())
+       for (Joueur j : joueurs) {
+           if (!j.isInside())
                listeInsideJoueurs.add(j);
+       }
        return listeInsideJoueurs;
     }
 }
