@@ -287,11 +287,15 @@ public class GameManager implements InvalidationListener {
                     if (!j1.equals(j2)) {
                         if (j1.getNbdiamantsjoueur() > j2.getNbdiamantsjoueur()) {
                             message.setValue(debut + j1.getPseudo() + " avec un nombre de : " + j1.getNbdiamantsjoueur() + "diamants");
-                        } else {
+                        }
+                        if (j1.getNbdiamantsjoueur() < j2.getNbdiamantsjoueur()) {
                             message.setValue(debut + j2.getPseudo() + " avec un nombre de : " + j2.getNbdiamantsjoueur() + "diamants");
                         }
-                    }
+                        if (j1.getNbdiamantsjoueur() == j2.getNbdiamantsjoueur()) {
+                            message.setValue("Egalité entre les joueurs");
+                        }
 
+                    }
                 }
             }
 
