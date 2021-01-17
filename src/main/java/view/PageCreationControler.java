@@ -60,7 +60,7 @@ public class PageCreationControler {
                 return;
             }
         }
-        Joueur nouveauJoueur = new Joueur(nouveauPseudo.getText(), 0);
+        Joueur nouveauJoueur = new Joueur(nouveauPseudo.getText());
         listeJoueurs.getItems().add(nouveauJoueur);
         listeJoueurs.setCellFactory(__-> new CelluleJoueur());
         nouveauPseudo.clear();

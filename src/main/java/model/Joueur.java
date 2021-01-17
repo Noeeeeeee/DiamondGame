@@ -30,13 +30,12 @@ public class Joueur {
     /**
      * Constructeur d'un joueur avec son pseudo et son nombre de diamant ainsi que sa position initialisée à true donc dans la pyramide
      * @param pseudo
-     * @param nbDiamantsJoueur
      */
-    public Joueur (String pseudo, int nbDiamantsJoueur)
+    public Joueur (String pseudo)
     {
         this.pseudo.setValue(pseudo);
-        this.nbDiamantsJoueur=nbDiamantsJoueur;
         this.inside=true;
+        nbDiamantsJoueur=0;
     }
 
     /**
