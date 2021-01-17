@@ -15,9 +15,6 @@ import model.Joueur;
             if(item !=null)
             {
                 HBox container = new HBox();
-                System.out.println(1);
-                CheckBox c = new CheckBox();
-                container.getChildren().add(c);
 
                 Label lb = new Label();
                 lb.textProperty().bind(item.pseudoProperty());

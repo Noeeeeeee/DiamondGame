@@ -19,40 +19,65 @@ public abstract class Carte {
     protected int maxWidth = 375;
 
     /**
-     *
+     *instancie la doubleProperty x
      */
     protected DoubleProperty x = new SimpleDoubleProperty();
-        public double getX()
+
+    /**
+     * Retourne la position x
+     * @return
+     */
+    public double getX()
         {
             return getX();
         }
 
     /**
-     * permet de récupérer la
-     * @return
+     * permet de récupérer la position x pour le binding
+     * @return la position x
      */
     public DoubleProperty xProperty()
     {
         return x;
     }
+
+    /**
+     * Setter de la position x
+     * @param x
+     */
     public void setX(double x)
     {
         this.x.set(x);
     }
 
     /**
-     *
+     *instancie la position y
      */
     protected DoubleProperty y = new SimpleDoubleProperty();
-        public double getY()
+
+    /**
+     * Recupere la position y
+     * @return la position y
+     */
+    public double getY()
         {
             return y.get();
         }
-        public DoubleProperty yProperty()
+
+    /**
+     * Recupere la position y pour le binding
+     * @return la position y
+     */
+    public DoubleProperty yProperty()
         {
             return y;
         }
-        public void setY(double y){
+
+    /**
+     * Setter de la position y
+     * @param y
+     */
+    public void setY(double y){
             this.y.set(y);
         }
 
@@ -72,7 +97,7 @@ public abstract class Carte {
 
     /**
      * retourne un string pour récupérer l'image
-     * @return
+     * @return le chemin image
      */
     public String getImage() {
         return image;
@@ -80,7 +105,7 @@ public abstract class Carte {
 
     /**
      * retourne la hauteur
-     * @return
+     * @return la taille max
      */
     public int getMaxHeight() {
         return maxHeight;
@@ -88,7 +113,7 @@ public abstract class Carte {
 
     /**
      * retourne la largeur
-     * @return
+     * @return la largeur max
      */
     public int getMaxWidth() {
         return maxWidth;
