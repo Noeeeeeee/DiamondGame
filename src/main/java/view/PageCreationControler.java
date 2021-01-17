@@ -9,11 +9,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import manager.GameManager;
 import model.Joueur;
 
@@ -60,6 +62,7 @@ public class PageCreationControler {
         }
         Joueur nouveauJoueur = new Joueur(nouveauPseudo.getText(), 0);
         listeJoueurs.getItems().add(nouveauJoueur);
+        listeJoueurs.setCellFactory(__-> new CelluleJoueur());
         nouveauPseudo.clear();
     }
 

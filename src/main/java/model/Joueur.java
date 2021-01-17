@@ -1,5 +1,7 @@
 package model;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.EventType;
 import KeyboardController.ControllerK;
 
@@ -9,7 +11,12 @@ public class Joueur {
     /**
      * pseudo du Joueur
      */
-    private String pseudo;
+    private StringProperty pseudo = new SimpleStringProperty();
+    public StringProperty pseudoProperty()
+    {
+        return pseudo;
+    }
+
     /**
      * nombre de diamant du Joueur
      */
@@ -27,7 +34,7 @@ public class Joueur {
      */
     public Joueur (String pseudo, int nbDiamantsJoueur)
     {
-        this.pseudo=pseudo;
+        this.pseudo.setValue(pseudo);
         this.nbDiamantsJoueur=nbDiamantsJoueur;
         this.inside=true;
     }
@@ -49,11 +56,11 @@ public class Joueur {
     }
 
     public void setPseudo(String pseudo) {
-        this.pseudo = pseudo;
+        this.pseudo.setValue(pseudo);
     }
 
-    public String getPseudo(){
-        return pseudo;
+    public String getPseudo() {
+        return pseudo.get();
     }
 
     public void setNbdiamantsjoueur(int nbdiamantsjoueur) {
@@ -66,7 +73,7 @@ public class Joueur {
 
     @Override
     public String toString(){
-        return  pseudo + "\nDiamants : "  + nbDiamantsJoueur;
+        return  getPseudo() + "\nDiamants : "  + nbDiamantsJoueur;
     }
 
     /**
