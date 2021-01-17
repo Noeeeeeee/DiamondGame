@@ -7,6 +7,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 <Pane fx:id="MonPane" minHeight="482.0" minWidth="796.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PageJeuControler">
     <ImageView fitHeight="482.0" fitWidth="796.0" pickOnBounds="true" preserveRatio="true">
         <image>
@@ -19,8 +21,36 @@
     <Label layoutX="636.0" prefHeight="16.0" prefWidth="147.0" text="Joueurs à l'intérieur" />
     <Label layoutX="644.0" layoutY="317.0" text="Joueurs à l'extérieur" />
     <Button layoutX="654.0" layoutY="281.0" mnemonicParsing="false" onAction="#buttonSortir" text="sortir" />
+    <HBox layoutX="325.0" layoutY="65.0" prefHeight="41.0" prefWidth="202.0">
+        <children>
+            <Label text="Nombre de diamant :">
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </Label>
+            <Label fx:id="nombreTotal" layoutX="420.0" layoutY="127.0" text="Label">
+            <font>
+                <Font size="16.0"/>
+            </font>
+            </Label>
+        </children>
+    </HBox>
+    <HBox layoutX="369.0" layoutY="117.0" prefHeight="41.0" prefWidth="202.0">
+        <children>
+            <Label text="+" styleClass="diamantCourant">
+                <font>
+                    <Font size="30.0" />
+                </font>
+            </Label>
+            <Label fx:id="nbDiamantCarte" layoutX="289.0" layoutY="186.0" text="Label" styleClass="diamantCourant">
+                <font>
+                    <Font size="30.0"/>
+                </font>
+            </Label>
+        </children>
+    </HBox>
+
     <children>
         <ImageView fx:id="imageCarte" fitHeight="150.0" fitWidth="147.0" layoutX="142.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true" />
-        <Label fx:id="nombreTotal" layoutX="420.0" layoutY="127.0" text="Label" />
    </children>
 </Pane>

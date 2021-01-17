@@ -21,6 +21,9 @@ public class Partie {
     private ListProperty<Carte> lesCartesProp = new SimpleListProperty<>(lesCartesObs);
     private SimpleIntegerProperty nombreTotalDeDiamant = new SimpleIntegerProperty();
 
+
+    private SimpleIntegerProperty nombreDiamantCourant = new SimpleIntegerProperty();
+
     public Partie(int nbJoueur, ObservableList<Joueur> j) throws Exception{
         this.nbJoueur=nbJoueur;
         for (Joueur joueur:j) {
@@ -42,6 +45,8 @@ public class Partie {
     public int getNbJoueur() {
         return this.nbJoueur;
     }
+
+    public SimpleIntegerProperty getNombreDiamantCourant() { return nombreDiamantCourant; }
 
 
     public void ajouterCarte(Carte carte) {
@@ -69,6 +74,10 @@ public class Partie {
 
     public void compteurDiamant(CarteDiamant c)
     {
-        nombreTotalDeDiamant.set(this.nombreTotalDeDiamant.get() + c.getDiamants());
+        nombreDiamantCourant.setValue(c.getDiamants());
+        nombreTotalDeDiamant.set(this.nombreTotalDeDiamant.get() + nombreDiamantCourant.get());
     }
+
+
+
 }

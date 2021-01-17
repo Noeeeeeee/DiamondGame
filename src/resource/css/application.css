@@ -22,3 +22,7 @@
 #listviewCreation {
     -fx-background-color: #20120F;
 }
+
+.diamantCourant{
+    -fx-text-fill: #01C0BA;
+}

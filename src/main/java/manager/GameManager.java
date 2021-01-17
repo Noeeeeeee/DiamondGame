@@ -116,13 +116,13 @@ public class GameManager implements InvalidationListener {
 
         Random rand=new Random();
         int r = rand.nextInt(99);
-        if(r>96) {
+        if(r>65) {
             leCreateur.CreateurCartePiege(p);
             leBoucleur.setActive(false);
             this.chargerFenetre(FXMLLoader.load(getClass().getResource("/fxml/VuePageAccueil.fxml")));
         }
 
-        if(r<=96){
+        if(r<=65){
             leCreateur.CreateurCarteDiamant(p);
             for (Carte c : p.getLesCartes())
                 p.compteurDiamant((CarteDiamant)c);

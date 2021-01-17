@@ -42,6 +42,9 @@ public class PageJeuControler {
     @FXML
     private Label nombreTotal;
 
+    @FXML
+    private Label nbDiamantCarte;
+
 
 
     /**
@@ -66,6 +69,7 @@ public class PageJeuControler {
 
     public void initialize() throws Exception {
         Bindings.bindBidirectional(nombreTotal.textProperty(),GameManager.getInstance().getP().getNombreTotalDeDiamant(),new NumberStringConverter());
+        Bindings.bindBidirectional(nbDiamantCarte.textProperty(),GameManager.getInstance().getP().getNombreDiamantCourant(),new NumberStringConverter());
 
         GameManager.getInstance().getCartes().addListener((ListChangeListener.Change<? extends Carte> change) -> {
                     change.next();
